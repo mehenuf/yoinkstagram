@@ -1,0 +1,93 @@
+{
+  "name": "yoinkstagram",
+  "version": "1.0.0",
+  "description": "Modern desktop workspace for archiving Instagram media and metadata locally",
+  "license": "MIT",
+  "author": "Yoinkstagram Contributors",
+  "type": "module",
+  "main": "desktop/main.mjs",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "tsc --noEmit && vite build",
+    "start": "electron .",
+    "test": "node --test desktop/*.test.mjs src/panels/*.test.mjs",
+    "build:engine": "node scripts/build-engine.mjs",
+    "package:setup": "npm run build && npm run build:engine && electron-builder --win nsis --x64",
+    "package:portable": "npm run build && npm run build:engine && electron-builder --win portable --x64",
+    "package:arm64": "npm run build && npm run build:engine && electron-builder --win zip --arm64",
+    "package:windows": "npm run package:setup && npm run package:portable",
+    "package:all": "npm run package:setup && npm run package:portable && npm run package:arm64"
+  },
+  "devDependencies": {
+    "@fontsource-variable/dm-sans": "^5.2.8",
+    "lucide-react": "^1.14.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "electron": "45.4.1",
+    "electron-builder": "26.18.0",
+    "playwright": "^1.57.0",
+    "typescript": "^5.9.3",
+    "vite": "8.3.8"
+  },
+  "build": {
+    "appId": "local.yoinkstagram.desktop",
+    "productName": "Yoinkstagram",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "desktop/**/*.mjs",
+      "desktop/preload.cjs",
+      "!desktop/**/*.test.mjs",
+      "build/app.ico",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": ".build/engine/archivist-engine",
+        "to": "engine"
+      },
+      {
+        "from": ".build/Renderer-Licenses.txt",
+        "to": "Renderer-Licenses.txt"
+      }
+    ],
+    "win": {
+      "icon": "build/app.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "signExecutable": false
+    },
+    "nsis": {
+      "warningsAsErrors": false,
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Yoinkstagram",
+      "artifactName": "Yoinkstagram-${version}-Setup-${arch}.exe"
+    },
+    "portable": {
+      "warningsAsErrors": false,
+      "useZip": true,
+      "artifactName": "Yoinkstagram-${version}-Portable-${arch}.exe"
+    }
+  }
+}
