@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { CSSProperties } from 'react';
 import {
   ArrowDownToLine, ArrowRight, ArrowUpRight, Check, CircleCheck, Clock3,
@@ -8,6 +8,7 @@ import {
 import { AccountDialog, SettingsPanel, Workbench } from './Workbench';
 import { Activity, DownloadList, JobDialog, belongsToQueue } from './Downloads';
 import { GithubIcon } from './GithubIcon';
+import { version as appVersion } from '../package.json';
 import mark from './assets/mark.png';
 import coast from './assets/coast.webp';
 import gta6Hero from './assets/gta6-hero.webp';
@@ -25,7 +26,7 @@ type Section = (typeof sections)[number]['id'];
 
 const unloaded: Snapshot = {
   jobs: [], paused: false, cooldownUntil: null, account: null,
-  settings: { destination: '', reduceMotion: false }, version: '1.2.1',
+  settings: { destination: '', reduceMotion: false }, version: appVersion,
 };
 
 const count = new Intl.NumberFormat();
@@ -53,6 +54,7 @@ export function App() {
   );
 
   const effectiveTheme = theme === 'system' ? (systemIsDark ? 'dark' : 'light') : theme;
+  const isViceCity = effectiveTheme === 'gta6';
 
   useEffect(() => {
     const media = window.matchMedia('(prefers-color-scheme: dark)');
@@ -61,8 +63,11 @@ export function App() {
     return () => media.removeEventListener('change', handler);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.setAttribute('data-theme', effectiveTheme);
+  }, [effectiveTheme]);
+
+  useEffect(() => {
     if (api?.setThemeOverlay) {
       void api.setThemeOverlay(effectiveTheme === 'dark' || effectiveTheme === 'gta6');
     }
@@ -191,7 +196,9 @@ export function App() {
     <div className="app-frame" data-theme={effectiveTheme} data-reduced-motion={compact}>
       <aside className="rail" aria-label="Sidebar">
         <button type="button" className="brand" onClick={() => navigate('workspace')} aria-label="Yoinkstagram workspace">
-          <img src={mark} alt="" width="40" height="40" />
+          {isViceCity
+            ? <span className="vice-brand-mark" aria-hidden="true"><Palmtree size={23} strokeWidth={2.2} /></span>
+            : <img src={mark} alt="" width="40" height="40" />}
           <span>Yoinkstagram</span>
         </button>
         <nav className="rail-nav" aria-label="Navigation"
@@ -248,7 +255,7 @@ export function App() {
           <div className="window-bar-actions">
             <button
               type="button"
-              className={`theme-toggle-btn ${effectiveTheme === 'gta6' ? 'gta6-toggle' : ''}`}
+              className="theme-toggle-btn"
               onClick={toggleTheme}
               title={`Active: ${effectiveTheme === 'gta6' ? 'GTA VI' : effectiveTheme === 'dark' ? 'Dark' : 'Light'} (Click to cycle themes)`}
               aria-label="Toggle theme"
@@ -285,20 +292,23 @@ export function App() {
             {section === 'workspace' && (
               <>
                 <section className="hero" aria-labelledby="hero-title">
-                  <div className="hero-art" aria-hidden="true">
-                    <div className="hero-art-ring" />
-                    <div className="hero-photo">
-                      <img className="hero-image" src={effectiveTheme === 'gta6' ? gta6Hero : coast} alt="" draggable={false} />
-                      <span className="photo-action"><ArrowDownToLine size={23} strokeWidth={2.2} /></span>
+                  {isViceCity
+                    ? <img className="vice-hero-image" src={gta6Hero} alt="" draggable={false} />
+                    : <div className="hero-art" aria-hidden="true">
+                      <div className="hero-art-ring" />
+                      <div className="hero-photo">
+                        <img className="hero-image" src={coast} alt="" draggable={false} />
+                        <span className="photo-action"><ArrowDownToLine size={23} strokeWidth={2.2} /></span>
+                      </div>
                     </div>
-                  </div>
+                  }
                   <div className="hero-copy">
                     <h1 id="hero-title">
-                      {effectiveTheme === 'gta6' ? <>Vice City <em>archive.</em></> : <>Your Instagram <em>archive.</em></>}
+                      {isViceCity ? <>Vice City <em>archive.</em></> : <>Your Instagram <em>archive.</em></>}
                     </h1>
                     <p>
-                      {effectiveTheme === 'gta6'
-                        ? 'Capture posts, reels, stories, and highlights with neon precision and zero cloud tracking.'
+                      {isViceCity
+                        ? 'Save posts, reels, stories, and highlights to your local archive.'
                         : 'Save posts, reels, stories, and highlights with granular control and zero cloud tracking.'}
                     </p>
                     <button type="button" className="hero-action" onClick={newDownload} disabled={!api || !ready}>

@@ -629,10 +629,11 @@ export function SettingsPanel({
             <h2>Appearance & Theme</h2>
             <p>Customize the workspace styling for comfortable daytime or low-light viewing.</p>
           </div>
-          <div className="wb-theme-picker" role="radiogroup" aria-label="Select theme">
+          <div className="wb-theme-picker" role="group" aria-label="Select theme">
             <button
               type="button"
               className={`wb-theme-btn ${theme === 'light' ? 'selected' : ''}`}
+              aria-pressed={theme === 'light'}
               onClick={() => onSelectTheme?.('light')}
               title="Light theme"
             >
@@ -641,6 +642,7 @@ export function SettingsPanel({
             <button
               type="button"
               className={`wb-theme-btn ${theme === 'dark' ? 'selected' : ''}`}
+              aria-pressed={theme === 'dark'}
               onClick={() => onSelectTheme?.('dark')}
               title="Dark theme"
             >
@@ -649,6 +651,7 @@ export function SettingsPanel({
             <button
               type="button"
               className={`wb-theme-btn ${theme === 'gta6' ? 'selected' : ''}`}
+              aria-pressed={theme === 'gta6'}
               onClick={() => onSelectTheme?.('gta6')}
               title="GTA VI Vice City theme"
             >
@@ -657,6 +660,7 @@ export function SettingsPanel({
             <button
               type="button"
               className={`wb-theme-btn ${theme === 'system' ? 'selected' : ''}`}
+              aria-pressed={theme === 'system'}
               onClick={() => onSelectTheme?.('system')}
               title="Match system theme"
             >

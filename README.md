@@ -6,7 +6,7 @@
 
 ### The High-Performance Instagram Archival Workspace for Windows
 
-[![Release](https://img.shields.io/badge/release-v1.2.1-e54b9c?style=for-the-badge&logo=github)](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.1)
+[![Release](https://img.shields.io/badge/release-v1.2.2-e54b9c?style=for-the-badge&logo=github)](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.2)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%20%2F%2011-0078D4?style=for-the-badge&logo=windows)](https://github.com/mehenuf/yoinkstagram/releases)
 [![Architecture](https://img.shields.io/badge/architecture-x64%20%7C%20arm64-24292e?style=for-the-badge)](https://github.com/mehenuf/yoinkstagram/releases)
 [![Build Status](https://img.shields.io/badge/build-passing-success?style=for-the-badge)](https://github.com/mehenuf/yoinkstagram/actions)
@@ -17,8 +17,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.1"><strong>📥 Download v1.2.1 Installer</strong></a> •
-  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.1"><strong>⚡ Download Portable Edition</strong></a> •
+  <a href="https://github.com/mehenuf/yoinkstagram/releases/download/v1.2.2/Yoinkstagram-1.2.2-Setup-x64.exe"><strong>📥 Download v1.2.2 Installer</strong></a> •
+  <a href="https://github.com/mehenuf/yoinkstagram/releases/download/v1.2.2/Yoinkstagram-1.2.2-Portable-x64.exe"><strong>⚡ Download Portable Edition</strong></a> •
   <a href="#features"><strong>Explore Features</strong></a> •
   <a href="#quick-start"><strong>Build from Source</strong></a>
 </p>
@@ -27,27 +27,31 @@
 
 ---
 
-## ⚡ What's New in v1.2.1
+## ⚡ What's New in v1.2.2
 
-- 🌴 **Full GTA VI Vice City Immersion**:
-  - **Dynamic Vice City Hero Art**: High-octane coastal sunset scene featuring Ocean Drive Art Deco neon hotels, palm promenades, and sports cars replaces the default hero image when the GTA VI theme is active.
-  - **Atmospheric Transparent Backdrop**: Translucent glassmorphism panels with deep backdrop blurs (`backdrop-filter: blur(24px)`) allow the starry Vice City night skyline and neon palm silhouettes to shine subtly through the workspace.
-  - **Iconic Stylized Typography**: Italicized, bold condensed headers, animated neon title gradients (*"VICE CITY ARCHIVE."* with cyan/magenta/sunset orange flow), uppercase section accents, and luminous text shadows.
-  - **Complete Modal & Option Theme Audit**: Fixed washed-out white toggle card backgrounds in the *Download Options* dialog. All option switches, toggles, form fields, filter inputs, and action buttons now feature high-contrast dark-violet neon styling and perfect readability.
+- 🌴 **GTA VI / Vice City theme**
+  - Original Ocean Drive sunset and blue-hour waterfront artwork frame the workspace, queue, history, and settings.
+  - Warm coral controls, seafoam status accents, and [Anton display lettering](https://fontsource.org/fonts/anton) give the theme its own visual identity.
+  - Download options, account dialogs, and job details share the same palette and keyboard focus styling.
+- **Live showcase recordings** cover theme switching, queue filters, and a live download from NASA's public account.
+
+### Download engine and workspace
+
 - 🔄 **Persistent Cooldown & Multi-Hour Auto-Resume**: Downloads never drop from the queue or get prematurely marked `partial` when Instagram imposes a rate limit. Tasks automatically enter a cooling-down state with progressive backoff (15m, 30m, 1h, 2h), stay in the active queue, and automatically resume exactly where they left off once the cooldown expires.
 - 🛡️ **Anti-Ban Ultra-Safe Pacing & Human Jitter**: Conservative request pacing (3.0s - 5.0s jittered intervals) plus periodic 30-second browsing pauses every 15 requests. Guards against false "account compromised" security challenges and forced password resets.
 - 🌐 **Adaptive Connection Guard & Rapid Retry**: Transient network hiccups and soft-throttling are automatically caught and retried with exponential backoff (2s, 4s) before failing individual media. 3 consecutive connection issues trigger an automatic safety cooldown to protect your account from IP blocks.
 - 🎨 **Polished UI & Responsive Space Efficiency**:
   - Re-architected sidebar footer with dedicated GitHub repository card (`mehenuf/yoinkstagram`), author credit for **Md. Mehenuf Hossain Bhuiyan**, and version indicator without overlapping or squished text.
   - Eliminated dead vertical space in the Recent Activity card with expanded history view, file count metrics, and direct quick-navigation footer.
-  - Real operational showcase GIFs generated directly from the live Electron desktop app.
 
 ---
 
 ## 🎬 Operational Showcase
 
+The theme and queue demos were recorded in the packaged Windows build of Yoinkstagram v1.2.2. The live download demo was recorded in v1.2.1. Both download workflows use NASA's public Instagram account, [@nasa](https://www.instagram.com/nasa/).
+
 ### 1. Intuitive Target Queuing & Granular Filtering
-Add any target with one click—profiles, individual reels, post carousels, or tagged collections. Configure content filters on the fly.
+Enter a profile, select which content to save, set an item limit, and add the download to the queue.
 
 <div align="center">
   <img src="docs/assets/demo-queue.gif" alt="Target Queuing & Filter Showcase" width="820" style="border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
@@ -55,21 +59,23 @@ Add any target with one click—profiles, individual reels, post carousels, or t
 
 <br/>
 
-### 2. Day, Night & Vice City: Responsive Themes & Dynamic Motion
-Switch seamlessly between Crisp Light, Obsidian Dark, and GTA VI Vice City Neon themes, with custom typography (DM Sans) and native Windows caption synchronization.
+### 2. Light, Dark, and Vice City
+Cycle through the three themes and explore Vice City's Download options, queue, and settings.
 
 <div align="center">
-  <img src="docs/assets/demo-theme.gif" alt="Dark Mode & Theme Showcase" width="820" style="border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+  <img src="docs/assets/demo-theme.gif" alt="Light, Dark, and Vice City theme tour" width="820" style="border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
 </div>
 
 <br/>
 
-### 3. Live Archival Engine & Resumable Checkpoints
-Real-time download telemetry, live log streaming, multi-hour rate-limit auto-cooldown, and persistent JSON/XZ cursor recovery.
+### 3. Download Progress & History
+Resume the queue, watch the engine save the selected public media, then find the completed job in Download history.
 
 <div align="center">
   <img src="docs/assets/demo-download.gif" alt="Download Progress & Engine Showcase" width="820" style="border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
 </div>
+
+To re-record the showcase, run `node scripts/capture_real_gifs.cjs` with FFmpeg on your PATH. The script opens the matching unpacked Windows build in `release/win-unpacked` with an isolated app profile. It downloads up to two public items if Instagram allows signed-out access. Set `YOINKSTAGRAM_DEMO_EXE` to use an executable from another build folder.
 
 ---
 
@@ -111,16 +117,16 @@ Real-time download telemetry, live log streaming, multi-hour rate-limit auto-coo
 
 ---
 
-## 📦 Downloads & Binaries (v1.1.0)
+## 📦 Downloads & Binaries (v1.2.2)
 
-Pre-built releases are signed and packaged for modern Windows 10 and Windows 11 systems:
+Windows builds are available for x64 and ARM64. [View all releases](https://github.com/mehenuf/yoinkstagram/releases).
 
 | Package | Architecture | Type | Direct Download Link |
 | :--- | :--- | :--- | :--- |
-| **Yoinkstagram Setup** | `x64` | NSIS Installer | [Yoinkstagram-Setup-1.1.0.exe](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0) |
-| **Yoinkstagram Portable** | `x64` | Standalone Exe | [Yoinkstagram-1.1.0-portable.exe](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0) |
-| **Yoinkstagram Package** | `x64` | Portable Zip | [Yoinkstagram-1.1.0-windows-x64.zip](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0) |
-| **Yoinkstagram ARM64** | `arm64` | Portable Zip | [Yoinkstagram-1.1.0-windows-arm64.zip](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0) |
+| **Yoinkstagram Setup** | `x64` | NSIS Installer | [Yoinkstagram-1.2.2-Setup-x64.exe](https://github.com/mehenuf/yoinkstagram/releases/download/v1.2.2/Yoinkstagram-1.2.2-Setup-x64.exe) |
+| **Yoinkstagram Portable** | `x64` | Standalone EXE | [Yoinkstagram-1.2.2-Portable-x64.exe](https://github.com/mehenuf/yoinkstagram/releases/download/v1.2.2/Yoinkstagram-1.2.2-Portable-x64.exe) |
+| **Yoinkstagram ZIP** | `x64` | Portable ZIP | [Yoinkstagram-1.2.2-win.zip](https://github.com/mehenuf/yoinkstagram/releases/download/v1.2.2/Yoinkstagram-1.2.2-win.zip) |
+| **Yoinkstagram ARM64** | `arm64` | Portable ZIP | [Yoinkstagram-1.2.2-arm64-win.zip](https://github.com/mehenuf/yoinkstagram/releases/download/v1.2.2/Yoinkstagram-1.2.2-arm64-win.zip) |
 
 > **Note on 32-bit (x86)**: Modern Electron versions (v45+) natively target 64-bit systems. For legacy 32-bit environments, users can run the source code on a 32-bit Node.js / Python environment.
 

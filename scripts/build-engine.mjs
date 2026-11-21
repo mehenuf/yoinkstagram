@@ -28,6 +28,7 @@ if (result.status === 0) {
     scheduler: 'LICENSE',
     'lucide-react': 'LICENSE',
     '@fontsource-variable/dm-sans': 'LICENSE',
+    '@fontsource/anton': 'LICENSE',
   };
   const notices = Object.entries(packages).map(([name, file]) =>
     `--- ${name} ---\n\n${readFileSync(join('node_modules', name, file), 'utf8').trim()}`);
