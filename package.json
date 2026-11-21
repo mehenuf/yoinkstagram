@@ -12,11 +12,11 @@
     "start": "electron .",
     "test": "node --test desktop/*.test.mjs src/panels/*.test.mjs",
     "build:engine": "node scripts/build-engine.mjs",
-    "package:setup": "npm run build && npm run build:engine && electron-builder --win nsis --x64",
-    "package:portable": "npm run build && npm run build:engine && electron-builder --win portable --x64",
-    "package:arm64": "npm run build && npm run build:engine && electron-builder --win zip --arm64",
-    "package:windows": "npm run package:setup && npm run package:portable",
-    "package:all": "npm run package:setup && npm run package:portable && npm run package:arm64"
+    "package:setup": "electron-builder --win nsis --x64",
+    "package:portable": "electron-builder --win portable --x64",
+    "package:windows": "electron-builder --win nsis portable zip --x64",
+    "package:arm64": "electron-builder --win zip --arm64",
+    "package:all": "npm run build && npm run build:engine && npm run package:windows && npm run package:arm64"
   },
   "devDependencies": {
     "@fontsource-variable/dm-sans": "^5.2.8",
