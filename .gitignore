@@ -77,3 +77,8 @@ userData/
 .env
 .env.*
 !.env.example
+
+# Local Research & Documentation
+RESEARCH.md
+*research*.md
+
