@@ -176,13 +176,29 @@ async function run() {
   await evalSafe(`
     document.querySelector('.theme-toggle-btn')?.click();
   `);
-  await sleep(500);
+  await sleep(600);
 
   // GTA VI theme view
+  for (let i = 0; i < 7; i++) {
+    await snap('theme', themeFrame++);
+    await sleep(120);
+  }
+
+  // Open Download Options modal in GTA VI theme to showcase polished modal
+  await evalSafe(`
+    document.querySelector('.wb-options-button')?.click();
+  `);
+  await sleep(600);
+
   for (let i = 0; i < 8; i++) {
     await snap('theme', themeFrame++);
     await sleep(120);
   }
+
+  await evalSafe(`
+    document.querySelector('.wb-dialog-close')?.click();
+  `);
+  await sleep(300);
 
   // =========================================================================
   // 3. SCENARIO 3: demo-download.gif

@@ -6,7 +6,7 @@
 
 ### The High-Performance Instagram Archival Workspace for Windows
 
-[![Release](https://img.shields.io/badge/release-v1.2.0-e54b9c?style=for-the-badge&logo=github)](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.0)
+[![Release](https://img.shields.io/badge/release-v1.2.1-e54b9c?style=for-the-badge&logo=github)](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.1)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%20%2F%2011-0078D4?style=for-the-badge&logo=windows)](https://github.com/mehenuf/yoinkstagram/releases)
 [![Architecture](https://img.shields.io/badge/architecture-x64%20%7C%20arm64-24292e?style=for-the-badge)](https://github.com/mehenuf/yoinkstagram/releases)
 [![Build Status](https://img.shields.io/badge/build-passing-success?style=for-the-badge)](https://github.com/mehenuf/yoinkstagram/actions)
@@ -17,8 +17,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.0"><strong>📥 Download v1.2.0 Installer</strong></a> •
-  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.0"><strong>⚡ Download Portable Edition</strong></a> •
+  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.1"><strong>📥 Download v1.2.1 Installer</strong></a> •
+  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.1"><strong>⚡ Download Portable Edition</strong></a> •
   <a href="#features"><strong>Explore Features</strong></a> •
   <a href="#quick-start"><strong>Build from Source</strong></a>
 </p>
@@ -27,10 +27,14 @@
 
 ---
 
-## ⚡ What's New in v1.2.0
+## ⚡ What's New in v1.2.1
 
+- 🌴 **Full GTA VI Vice City Immersion**:
+  - **Dynamic Vice City Hero Art**: High-octane coastal sunset scene featuring Ocean Drive Art Deco neon hotels, palm promenades, and sports cars replaces the default hero image when the GTA VI theme is active.
+  - **Atmospheric Transparent Backdrop**: Translucent glassmorphism panels with deep backdrop blurs (`backdrop-filter: blur(24px)`) allow the starry Vice City night skyline and neon palm silhouettes to shine subtly through the workspace.
+  - **Iconic Stylized Typography**: Italicized, bold condensed headers, animated neon title gradients (*"VICE CITY ARCHIVE."* with cyan/magenta/sunset orange flow), uppercase section accents, and luminous text shadows.
+  - **Complete Modal & Option Theme Audit**: Fixed washed-out white toggle card backgrounds in the *Download Options* dialog. All option switches, toggles, form fields, filter inputs, and action buttons now feature high-contrast dark-violet neon styling and perfect readability.
 - 🔄 **Persistent Cooldown & Multi-Hour Auto-Resume**: Downloads never drop from the queue or get prematurely marked `partial` when Instagram imposes a rate limit. Tasks automatically enter a cooling-down state with progressive backoff (15m, 30m, 1h, 2h), stay in the active queue, and automatically resume exactly where they left off once the cooldown expires.
-- 🌴 **GTA VI Vice City Sunset Theme**: A playful, synthwave-inspired theme featuring tropical neon hot pink and sunset orange gradients, glowing status badges, luminous chip highlights, and animated neon headline flows, accessible directly from the top bar and settings.
 - 🛡️ **Anti-Ban Ultra-Safe Pacing & Human Jitter**: Conservative request pacing (3.0s - 5.0s jittered intervals) plus periodic 30-second browsing pauses every 15 requests. Guards against false "account compromised" security challenges and forced password resets.
 - 🌐 **Adaptive Connection Guard & Rapid Retry**: Transient network hiccups and soft-throttling are automatically caught and retried with exponential backoff (2s, 4s) before failing individual media. 3 consecutive connection issues trigger an automatic safety cooldown to protect your account from IP blocks.
 - 🎨 **Polished UI & Responsive Space Efficiency**:

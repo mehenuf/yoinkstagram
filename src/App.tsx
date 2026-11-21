@@ -10,6 +10,7 @@ import { Activity, DownloadList, JobDialog, belongsToQueue } from './Downloads';
 import { GithubIcon } from './GithubIcon';
 import mark from './assets/mark.png';
 import coast from './assets/coast.webp';
+import gta6Hero from './assets/gta6-hero.webp';
 import type { Snapshot } from './types';
 
 export type Theme = 'light' | 'dark' | 'gta6' | 'system';
@@ -24,7 +25,7 @@ type Section = (typeof sections)[number]['id'];
 
 const unloaded: Snapshot = {
   jobs: [], paused: false, cooldownUntil: null, account: null,
-  settings: { destination: '', reduceMotion: false }, version: '1.2.0',
+  settings: { destination: '', reduceMotion: false }, version: '1.2.1',
 };
 
 const count = new Intl.NumberFormat();
@@ -287,13 +288,19 @@ export function App() {
                   <div className="hero-art" aria-hidden="true">
                     <div className="hero-art-ring" />
                     <div className="hero-photo">
-                      <img className="hero-image" src={coast} alt="" draggable={false} />
+                      <img className="hero-image" src={effectiveTheme === 'gta6' ? gta6Hero : coast} alt="" draggable={false} />
                       <span className="photo-action"><ArrowDownToLine size={23} strokeWidth={2.2} /></span>
                     </div>
                   </div>
                   <div className="hero-copy">
-                    <h1 id="hero-title">Your Instagram <em>archive.</em></h1>
-                    <p>Save posts, reels, stories, and highlights with granular control and zero cloud tracking.</p>
+                    <h1 id="hero-title">
+                      {effectiveTheme === 'gta6' ? <>Vice City <em>archive.</em></> : <>Your Instagram <em>archive.</em></>}
+                    </h1>
+                    <p>
+                      {effectiveTheme === 'gta6'
+                        ? 'Capture posts, reels, stories, and highlights with neon precision and zero cloud tracking.'
+                        : 'Save posts, reels, stories, and highlights with granular control and zero cloud tracking.'}
+                    </p>
                     <button type="button" className="hero-action" onClick={newDownload} disabled={!api || !ready}>
                       <ArrowDownToLine size={17} /> New download <ArrowRight size={15} className="hero-action-arrow" />
                     </button>

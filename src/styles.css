@@ -828,36 +828,51 @@ svg { flex-shrink: 0; vertical-align: middle; }
 }
 
 [data-theme="gta6"] body {
-  background: #0e0717;
+  background-color: #0c0515;
+  background-image:
+    linear-gradient(180deg, rgba(12, 5, 21, 0.62) 0%, rgba(12, 5, 21, 0.88) 100%),
+    url('./assets/gta6-backdrop.webp');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 [data-theme="gta6"] .rail {
-  background: #130a1f;
-  border-right-color: #381648;
+  background: rgba(18, 9, 28, 0.68);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-right-color: rgba(255, 42, 141, 0.18);
 }
 
 [data-theme="gta6"] .brand span {
-  background: linear-gradient(110deg, #ff2a8d, #ff914d);
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  background: linear-gradient(110deg, #00f5d4 0%, #ff2a8d 50%, #ff914d 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: 850;
-  letter-spacing: -0.02em;
+  filter: drop-shadow(0 0 12px rgba(255, 42, 141, 0.55));
 }
 
 [data-theme="gta6"] .rail-link {
   color: #bda6cb;
+  font-style: italic;
+  font-weight: 650;
+  letter-spacing: 0.01em;
 }
 [data-theme="gta6"] .rail-link:hover {
   color: #ff9fd5;
-  background: #251034;
+  background: rgba(37, 16, 52, 0.7);
 }
 [data-theme="gta6"] .rail-link.selected {
   color: #ff2a8d;
+  font-weight: 800;
   text-shadow: 0 0 10px rgba(255, 42, 141, 0.45);
 }
 [data-theme="gta6"] .rail-highlight {
-  background: linear-gradient(106deg, #44133b, #260e3a);
+  background: linear-gradient(106deg, rgba(68, 19, 59, 0.85), rgba(38, 14, 58, 0.85));
   border: 1px solid #ff2a8d;
   box-shadow: 0 0 14px rgba(255, 42, 141, 0.35);
 }
@@ -869,13 +884,15 @@ svg { flex-shrink: 0; vertical-align: middle; }
 
 [data-theme="gta6"] .storage,
 [data-theme="gta6"] .rail-github-link {
-  background: #170d24;
-  border-color: #3b174d;
+  background: rgba(23, 13, 36, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(255, 42, 141, 0.18);
   color: #fdf5ff;
 }
 [data-theme="gta6"] .storage:hover,
 [data-theme="gta6"] .rail-github-link:hover {
-  background: #241138;
+  background: rgba(36, 17, 56, 0.85);
   border-color: #ff2a8d;
   box-shadow: 0 0 15px rgba(255, 42, 141, 0.28);
 }
@@ -902,6 +919,9 @@ svg { flex-shrink: 0; vertical-align: middle; }
   color: #ff9fd5;
   border: 1px solid #ff2a8d55;
   box-shadow: 0 0 6px rgba(255, 42, 141, 0.3);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.03em;
 }
 [data-theme="gta6"] .credit-row {
   color: #bda6cb;
@@ -911,8 +931,10 @@ svg { flex-shrink: 0; vertical-align: middle; }
 }
 
 [data-theme="gta6"] .window-bar {
-  background: #0e0717;
-  border-bottom-color: #361648;
+  background: rgba(14, 7, 23, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: rgba(255, 42, 141, 0.15);
 }
 [data-theme="gta6"] .breadcrumbs {
   color: #bda6cb;
@@ -923,7 +945,8 @@ svg { flex-shrink: 0; vertical-align: middle; }
 
 [data-theme="gta6"] .theme-toggle-btn,
 [data-theme="gta6"] .github-pill {
-  background: #1a0f2b;
+  background: rgba(26, 15, 43, 0.7);
+  backdrop-filter: blur(12px);
   border-color: #3e1951;
   color: #fdf5ff;
 }
@@ -935,13 +958,14 @@ svg { flex-shrink: 0; vertical-align: middle; }
   box-shadow: 0 0 12px rgba(255, 42, 141, 0.3);
 }
 [data-theme="gta6"] .theme-toggle-btn.gta6-toggle {
-  background: linear-gradient(115deg, #3c1236, #210d35);
+  background: linear-gradient(115deg, rgba(60, 18, 54, 0.85), rgba(33, 13, 53, 0.85));
   border-color: #ff2a8d;
   color: #ff9fd5;
   box-shadow: 0 0 12px rgba(255, 42, 141, 0.4);
 }
 [data-theme="gta6"] .account-pill {
-  background: #1a0f2b;
+  background: rgba(26, 15, 43, 0.7);
+  backdrop-filter: blur(12px);
   border-color: #3e1951;
   color: #fdf5ff;
 }
@@ -952,27 +976,41 @@ svg { flex-shrink: 0; vertical-align: middle; }
 }
 
 [data-theme="gta6"] .main-content {
-  scrollbar-color: #4b1c5f #0e0717;
+  scrollbar-color: #4b1c5f transparent;
 }
 
 [data-theme="gta6"] .hero {
-  border-color: #5c1c6e;
+  border-color: rgba(255, 42, 141, 0.35);
   background:
-    radial-gradient(ellipse at 88% 20%, rgba(255, 42, 141, 0.42), transparent 58%),
-    radial-gradient(ellipse at 35% 88%, rgba(255, 123, 43, 0.32), transparent 52%),
-    radial-gradient(ellipse at 10% 25%, rgba(0, 245, 212, 0.18), transparent 45%),
-    linear-gradient(125deg, #1d0a2f 0%, #0d0517 100%);
+    radial-gradient(ellipse at 88% 20%, rgba(255, 42, 141, 0.38), transparent 58%),
+    radial-gradient(ellipse at 35% 88%, rgba(255, 123, 43, 0.28), transparent 52%),
+    radial-gradient(ellipse at 10% 25%, rgba(0, 245, 212, 0.15), transparent 45%),
+    linear-gradient(130deg, rgba(32, 12, 48, 0.72) 0%, rgba(14, 6, 24, 0.8) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   color: #fdf5ff;
-  box-shadow: 0 10px 35px rgba(255, 42, 141, 0.14);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 42, 141, 0.18);
+}
+[data-theme="gta6"] .hero h1 {
+  font-style: italic;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  background: linear-gradient(110deg, #ffffff 15%, #ffd1ea 45%, #ff2a8d 80%, #ff914d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 16px rgba(255, 42, 141, 0.45));
 }
 [data-theme="gta6"] .hero h1 em {
-  background: linear-gradient(110deg, #ff2a8d 0%, #ff8c3b 35%, #00f5d4 70%, #ff2a8d 100%);
+  background: linear-gradient(110deg, #00f5d4 0%, #ff2a8d 50%, #ff914d 100%);
   background-size: 250% 100%;
   animation: vice-gradient-flow 8s ease infinite;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 14px rgba(255, 42, 141, 0.4));
+  filter: drop-shadow(0 0 14px rgba(255, 42, 141, 0.5));
+  font-style: italic;
 }
 @keyframes vice-gradient-flow {
   0% { background-position: 0% 50%; }
@@ -982,22 +1020,32 @@ svg { flex-shrink: 0; vertical-align: middle; }
 [data-theme="gta6"] .hero p {
   color: #d8c2e6;
 }
+[data-theme="gta6"] .hero-action {
+  font-style: italic;
+  font-weight: 850;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
 [data-theme="gta6"] .hero-art-ring {
-  background: linear-gradient(135deg, rgba(255, 42, 141, 0.4), rgba(255, 123, 43, 0.3));
+  background: linear-gradient(135deg, rgba(255, 42, 141, 0.45), rgba(255, 123, 43, 0.35));
 }
 [data-theme="gta6"] .hero-photo {
-  border-color: #642177;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55), 0 0 25px rgba(255, 42, 141, 0.25);
+  border-color: #ff2a8d88;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65), 0 0 25px rgba(255, 42, 141, 0.35);
 }
 
 [data-theme="gta6"] .statistics {
-  border-color: #3b174d;
+  background: rgba(23, 13, 36, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(255, 42, 141, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
 }
 [data-theme="gta6"] .metric:hover {
-  background: #231038;
+  background: rgba(35, 16, 56, 0.7);
 }
 [data-theme="gta6"] .metric + .metric {
-  border-left-color: #3b174d;
+  border-left-color: rgba(255, 42, 141, 0.18);
 }
 [data-theme="gta6"] .metric-icon {
   background: #311139;
@@ -1005,16 +1053,33 @@ svg { flex-shrink: 0; vertical-align: middle; }
   box-shadow: 0 0 8px rgba(255, 42, 141, 0.25);
 }
 [data-theme="gta6"] .metric-copy strong {
-  color: #ff9fd5;
+  font-style: italic;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+  background: linear-gradient(110deg, #ff9fd5, #ff914d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 [data-theme="gta6"] .metric-arrow {
   color: #bda6cb;
 }
 
 [data-theme="gta6"] .panel {
-  background: #170d24;
-  border-color: #3b174d;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+  background: rgba(23, 13, 36, 0.7);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-color: rgba(255, 42, 141, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+[data-theme="gta6"] .panel h2,
+[data-theme="gta6"] .panel-header h2,
+[data-theme="gta6"] #activity-heading {
+  font-style: italic;
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  color: #fdf5ff;
+  text-shadow: 0 0 12px rgba(255, 42, 141, 0.35);
 }
 [data-theme="gta6"] .panel-icon {
   background: #311139;
@@ -1042,14 +1107,14 @@ svg { flex-shrink: 0; vertical-align: middle; }
   border-top-color: #2b1139;
 }
 [data-theme="gta6"] .activity-job:hover {
-  background: #220f35;
+  background: rgba(34, 15, 53, 0.7);
 }
 [data-theme="gta6"] .activity-footer {
   border-top-color: #30133f;
   color: #bda6cb;
 }
 [data-theme="gta6"] .activity-footer-btn {
-  background: #1e0e2e;
+  background: rgba(30, 14, 46, 0.85);
   border-color: #3f1952;
   color: #fdf5ff;
 }
@@ -1176,16 +1241,36 @@ svg { flex-shrink: 0; vertical-align: middle; }
 }
 
 [data-theme="gta6"] .job-dialog {
-  background: #170d24;
-  border-color: #4b1b60;
+  background: rgba(23, 12, 36, 0.92);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-color: rgba(255, 42, 141, 0.4);
   color: var(--ink);
-  box-shadow: 0 20px 85px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 42, 141, 0.2);
+  box-shadow: 0 25px 95px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 42, 141, 0.25);
 }
 [data-theme="gta6"] .job-dialog::backdrop {
-  background: #06020abf;
+  background: rgba(8, 3, 14, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+[data-theme="gta6"] .job-dialog-heading h2 {
+  font-style: italic;
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  background: linear-gradient(110deg, #00f5d4 0%, #ff2a8d 50%, #ff914d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme="gta6"] .job-dialog-source {
+  color: #ff9fd5;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 [data-theme="gta6"] .job-info {
-  background: #12091c;
+  background: rgba(18, 9, 28, 0.85);
   border-color: #381548;
 }
 [data-theme="gta6"] .job-info > div + div {

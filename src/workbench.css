@@ -1320,9 +1320,11 @@
   --wb-surface-tint: linear-gradient(130deg, #321038, #220d36 56%, #170929);
   --wb-spectrum: linear-gradient(110deg, #ff914d, #ff2a8d 58%, #7422f2);
   --wb-action: linear-gradient(110deg, #ff2a8d, #ff7b2b);
-  background: #170d24;
-  border-color: #3f1952;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+  background: rgba(23, 13, 36, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(255, 42, 141, 0.22);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 42, 141, 0.12);
 }
 
 [data-theme="gta6"] .wb-mark {
@@ -1333,7 +1335,7 @@
 
 [data-theme="gta6"] .wb-source,
 [data-theme="gta6"] .wb-entry {
-  background: #12091c;
+  background: rgba(18, 9, 28, 0.85);
   border-color: #3d1850;
   color: #fdf5ff;
 }
@@ -1345,7 +1347,7 @@
 [data-theme="gta6"] .wb-entry:focus-within,
 [data-theme="gta6"] .wb-source:hover {
   border-color: #ff2a8d;
-  box-shadow: 0 0 12px rgba(255, 42, 141, 0.25);
+  box-shadow: 0 0 14px rgba(255, 42, 141, 0.35);
 }
 
 [data-theme="gta6"] .wb-chip {
@@ -1364,9 +1366,29 @@
   box-shadow: 0 0 12px rgba(255, 42, 141, 0.45);
 }
 
+[data-theme="gta6"] .wb-content-chips button {
+  background: rgba(26, 15, 43, 0.85);
+  border-color: #3d1850;
+  color: #bda6cb;
+}
+[data-theme="gta6"] .wb-content-chips button:hover {
+  border-color: #ff2a8d;
+  color: #ff9fd5;
+  box-shadow: 0 0 10px rgba(255, 42, 141, 0.25);
+}
+[data-theme="gta6"] .wb-content-chips button[aria-pressed="true"] {
+  background: linear-gradient(110deg, #ff2a8d, #ff7b2b);
+  border-color: transparent;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(255, 42, 141, 0.5);
+}
+
 [data-theme="gta6"] .wb-btn-primary {
   background: linear-gradient(110deg, #ff2a8d, #ff7b2b);
   box-shadow: 0 0 16px rgba(255, 42, 141, 0.45);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.02em;
 }
 [data-theme="gta6"] .wb-btn-primary:hover {
   background: linear-gradient(110deg, #ff4099, #ff8c42);
@@ -1382,7 +1404,7 @@
 }
 
 [data-theme="gta6"] .wb-button-light {
-  background: #1a0f2b;
+  background: rgba(26, 15, 43, 0.85);
   border-color: #3d1850;
   color: #fdf5ff;
 }
@@ -1390,6 +1412,16 @@
   background: #251034;
   border-color: #ff2a8d;
   color: #ff9fd5;
+  box-shadow: 0 0 12px rgba(255, 42, 141, 0.3);
+}
+
+[data-theme="gta6"] .wb-text-button {
+  color: #ff914d;
+  font-weight: 700;
+}
+[data-theme="gta6"] .wb-text-button:hover:not(:disabled) {
+  color: #ffb076;
+  text-shadow: 0 0 8px rgba(255, 145, 77, 0.6);
 }
 
 [data-theme="gta6"] .wb-theme-picker {
@@ -1409,11 +1441,215 @@
   box-shadow: 0 0 12px rgba(255, 42, 141, 0.45);
 }
 
+/* Modals & Dialogs */
 [data-theme="gta6"] .wb-dialog {
-  background: #170d24;
-  border-color: #4b1b60;
-  box-shadow: 0 20px 85px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 42, 141, 0.2);
+  background: rgba(23, 12, 36, 0.92);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border-color: rgba(255, 42, 141, 0.35);
+  color: #fdf5ff;
+  box-shadow: 0 25px 95px rgba(0, 0, 0, 0.85), 0 0 35px rgba(255, 42, 141, 0.25);
 }
 [data-theme="gta6"] .wb-dialog::backdrop {
-  background: #06020abf;
+  background: rgba(8, 3, 14, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+[data-theme="gta6"] .wb-dialog-header {
+  border-bottom-color: #381548;
+}
+[data-theme="gta6"] .wb-dialog-header h2 {
+  font-style: italic;
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  background: linear-gradient(110deg, #00f5d4 0%, #ff2a8d 50%, #ff914d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme="gta6"] .wb-dialog-header p {
+  color: #bda6cb;
+}
+[data-theme="gta6"] .wb-dialog-close {
+  color: #bda6cb;
+}
+[data-theme="gta6"] .wb-dialog-close:hover {
+  color: #ff2a8d;
+  background: #251034;
+  box-shadow: 0 0 10px rgba(255, 42, 141, 0.3);
+}
+[data-theme="gta6"] .wb-dialog-footer {
+  background: rgba(18, 9, 28, 0.95);
+  border-top-color: #381548;
+}
+[data-theme="gta6"] .wb-dialog-footer .wb-button-primary {
+  background: linear-gradient(110deg, #ff2a8d 0%, #ff7b2b 100%);
+  color: #ffffff;
+  box-shadow: 0 0 16px rgba(255, 42, 141, 0.5);
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+[data-theme="gta6"] .wb-dialog-footer .wb-button-primary:hover:not(:disabled) {
+  background: linear-gradient(110deg, #ff4099 0%, #ff8c42 100%);
+  box-shadow: 0 0 24px rgba(255, 42, 141, 0.75);
+}
+[data-theme="gta6"] .wb-dialog-footer .wb-button-light {
+  background: rgba(30, 14, 46, 0.85);
+  border-color: #4d1c65;
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .wb-dialog-footer .wb-button-light:hover:not(:disabled) {
+  background: #2b113f;
+  border-color: #ff2a8d;
+  color: #ff9fd5;
+  box-shadow: 0 0 12px rgba(255, 42, 141, 0.3);
+}
+
+/* Category Tabs */
+[data-theme="gta6"] .wb-option-tabs {
+  border-bottom-color: #381548;
+}
+[data-theme="gta6"] .wb-option-tabs button {
+  color: #bda6cb;
+  font-style: italic;
+  font-weight: 750;
+  letter-spacing: 0.02em;
+}
+[data-theme="gta6"] .wb-option-tabs button:hover {
+  color: #ff9fd5;
+}
+[data-theme="gta6"] .wb-option-tabs button[aria-pressed="true"] {
+  color: #ff2a8d;
+  border-bottom-color: #ff2a8d;
+  text-shadow: 0 0 10px rgba(255, 42, 141, 0.5);
+}
+
+/* Option Sections */
+[data-theme="gta6"] .wb-option-section h3 {
+  font-style: italic;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 11.5px;
+  color: #ff9fd5;
+  text-shadow: 0 0 8px rgba(255, 42, 141, 0.35);
+}
+
+/* Option Toggle Rows (GTA VI Theme Fix) */
+[data-theme="gta6"] .wb-switch-row {
+  border-color: #3d1850;
+  background: rgba(18, 9, 28, 0.85);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+[data-theme="gta6"] .wb-option-section .wb-switch-row:hover:not(:has(input:disabled)) {
+  border-color: #ff2a8d;
+  background: #250f38;
+  box-shadow: 0 0 14px rgba(255, 42, 141, 0.3);
+}
+[data-theme="gta6"] .wb-switch-text strong {
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .wb-switch-text span,
+[data-theme="gta6"] .wb-switch-text > span {
+  color: #bda6cb;
+}
+[data-theme="gta6"] .wb-switch > span {
+  background: #2b1238;
+  border: 1px solid #4a195e;
+}
+[data-theme="gta6"] .wb-switch input:checked + span {
+  background: linear-gradient(110deg, #ff2a8d, #ff7b2b);
+  border-color: transparent;
+  box-shadow: 0 0 12px rgba(255, 42, 141, 0.6);
+}
+[data-theme="gta6"] .wb-switch > span::after {
+  background: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Fields & Form Inputs */
+[data-theme="gta6"] .wb-field :is(input, textarea, select) {
+  background: #12091c;
+  border-color: #3d1850;
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .wb-field :is(input, textarea, select):hover {
+  border-color: #ff2a8d88;
+}
+[data-theme="gta6"] .wb-field :is(input, textarea, select):focus {
+  border-color: #ff2a8d;
+  background: #180c25;
+  box-shadow: 0 0 12px rgba(255, 42, 141, 0.35);
+}
+[data-theme="gta6"] .wb-field span {
+  color: #bda6cb;
+}
+
+/* Auth / Session States */
+[data-theme="gta6"] .wb-auth-state {
+  border-color: #ff2a8d66;
+  background: linear-gradient(130deg, #321038, #220d36);
+  color: #ff9fd5;
+  box-shadow: 0 0 16px rgba(255, 42, 141, 0.25);
+}
+[data-theme="gta6"] .wb-signin-option {
+  border-color: #3d1850;
+  background: #140920;
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .wb-signin-option:hover:not(:disabled) {
+  border-color: #ff2a8d;
+  background: #230e35;
+  box-shadow: 0 0 12px rgba(255, 42, 141, 0.25);
+}
+[data-theme="gta6"] .wb-signin-primary {
+  border-color: #ff2a8d;
+  background: linear-gradient(130deg, #381040, #240d3a);
+  box-shadow: 0 0 18px rgba(255, 42, 141, 0.35);
+}
+[data-theme="gta6"] .wb-signin-primary:hover:not(:disabled) {
+  border-color: #ff4099;
+  background: linear-gradient(130deg, #46144e, #2d1048);
+}
+[data-theme="gta6"] .wb-signin-option-icon {
+  background: #2b1238;
+  color: #ff2a8d;
+}
+[data-theme="gta6"] .wb-signin-primary .wb-signin-option-icon {
+  background: #3e1548;
+  color: #ff914d;
+}
+
+/* Settings Panels & Groups */
+[data-theme="gta6"] .wb-settings-group {
+  background: rgba(23, 13, 36, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: #3d1850;
+}
+[data-theme="gta6"] .wb-settings-row + .wb-settings-row {
+  border-top-color: #2e123d;
+}
+[data-theme="gta6"] .wb-settings-label h2 {
+  color: #fdf5ff;
+  font-style: italic;
+  font-weight: 850;
+}
+[data-theme="gta6"] .wb-settings-label p {
+  color: #bda6cb;
+}
+
+/* Messages & Alerts */
+[data-theme="gta6"] .wb-message {
+  background: #2e1136;
+  border-color: #ff2a8d66;
+  color: #ffb7ea;
+}
+[data-theme="gta6"] .wb-checkpoint,
+[data-theme="gta6"] .wb-auth-hint {
+  background: #241032;
+  border-color: #4a195e;
+  color: #ff9fd5;
 }
