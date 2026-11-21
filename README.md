@@ -75,7 +75,7 @@ Resume the queue, watch the engine save the selected public media, then find the
   <img src="docs/assets/demo-download.gif" alt="Download Progress & Engine Showcase" width="820" style="border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
 </div>
 
-To re-record the showcase, run `node scripts/capture_real_gifs.cjs` with FFmpeg on your PATH. The script opens the matching unpacked Windows build in `release/win-unpacked` with an isolated app profile. It downloads up to two public items if Instagram allows signed-out access. Set `YOINKSTAGRAM_DEMO_EXE` to use an executable from another build folder.
+
 
 ---
 
