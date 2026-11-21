@@ -71,7 +71,24 @@ svg { flex-shrink: 0; vertical-align: middle; }
 .storage strong { font-size: 12px; }
 .storage small { margin-top: 3px; color: #695d70; font-size: 10px; }
 .storage > svg { color: #88738a; }
-.version { display: flex; justify-content: space-between; color: #716679; font-size: 10px; padding: 0 5px; letter-spacing: .025em; }
+.rail-meta { display: grid; gap: 7px; padding-top: 10px; border-top: 1px solid var(--line); }
+.rail-github-link {
+  display: flex; align-items: center; gap: 7px; width: 100%; padding: 6px 9px;
+  border-radius: 10px; border: 1px solid #ede6ef; background: #faf7fb; color: #433748;
+  font-size: 11px; font-weight: 610; text-align: left; cursor: pointer;
+  transition: background .2s, border-color .2s, color .2s, transform .2s var(--ease);
+}
+.rail-github-link:hover { background: #fff2f8; border-color: #edd2e2; color: #9a2b72; transform: translateY(-1px); }
+.rail-github-link span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rail-github-link .meta-arrow { color: #9c8e9f; }
+.credit-row {
+  display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--muted);
+  padding: 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.credit-row strong { color: var(--ink); font-weight: 680; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.version-info { display: flex; justify-content: space-between; align-items: center; color: #716679; font-size: 10px; padding: 0 4px; letter-spacing: .025em; }
+.version-tag { font-weight: 750; font-size: 10px; padding: 2px 6px; color: #85225f; background: #f9dce9; border-radius: 99px; }
+.version-desc { font-size: 10px; color: var(--muted); }
 
 .app-body { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
 .window-bar {
@@ -81,6 +98,15 @@ svg { flex-shrink: 0; vertical-align: middle; }
 }
 .breadcrumbs { display: flex; gap: 11px; align-items: center; color: #746878; font-size: 12px; }
 .breadcrumbs strong { color: #33283a; font-weight: 720; }
+.window-bar-actions { display: flex; align-items: center; gap: 8px; -webkit-app-region: no-drag; }
+.theme-toggle-btn, .github-pill {
+  display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 11px;
+  border: 1px solid #ede1ed; border-radius: 99px; font-size: 12px; font-weight: 650;
+  background: var(--white); color: var(--ink);
+  transition: background .2s, border-color .2s, transform .22s var(--ease);
+}
+.theme-toggle-btn:hover, .github-pill:hover { background: #fff1f7; border-color: #efd3e3; transform: translateY(-1px); }
+.theme-toggle-btn:active, .github-pill:active { transform: scale(.96); }
 .account-pill {
   display: inline-flex; gap: 8px; align-items: center; max-width: 245px; white-space: nowrap; border: 1px solid #ede1ed;
   border-radius: 99px; padding: 7px 11px; font-size: 12px; font-weight: 690; background: #fff;
@@ -339,15 +365,18 @@ svg { flex-shrink: 0; vertical-align: middle; }
   .app-frame { grid-template-columns: 62px minmax(0, 1fr); }
   .rail { padding: 18px 8px 12px; }
   .brand { margin: 1px 3px 25px; }
-  .brand span, .rail-link > span:not(.rail-highlight), .storage > span:nth-child(2), .storage > svg, .version { display: none; }
+  .brand span, .rail-link > span:not(.rail-highlight), .storage > span:nth-child(2), .storage > svg, .version, .credit-row, .version-info, .rail-github-link span, .rail-github-link .meta-arrow { display: none; }
   .rail-link { justify-content: center; padding: 0; }
   .rail-link small { position: absolute; top: 1px; right: 1px; }
   .storage { justify-content: center; padding: 5px; grid-template-columns: auto; }
+  .rail-github-link { justify-content: center; padding: 7px 0; }
 }
 @media (max-width: 640px) {
   .workspace-grid { grid-template-columns: minmax(0, 1fr); }
   .main-content { padding-inline: 13px; }
-  .window-bar { padding-inline: 13px; }
+  .window-bar { padding: 0 14px; }
+  .theme-toggle-btn span, .github-pill span { display: none; }
+  .theme-toggle-btn, .github-pill { padding: 0 8px; }
   .hero { grid-template-columns: 1fr; }
   .hero-copy { padding: 25px 18px 5px; }
   .hero h1 { font-size: clamp(40px, 9vw, 56px); }
@@ -364,4 +393,339 @@ svg { flex-shrink: 0; vertical-align: middle; }
 }
 [data-reduced-motion="true"] *, [data-reduced-motion="true"] *::before, [data-reduced-motion="true"] *::after {
   animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important;
+}
+
+/* ==========================================================================
+   Dark Mode System & Overrides
+   ========================================================================== */
+
+[data-theme="dark"] {
+  --ink: #f2edf5;
+  --muted: #a395aa;
+  --line: #352a3b;
+  --paper: #16111a;
+  --white: #201826;
+  --accent: #e54b9c;
+  --plum: #f2edf5;
+  --peach: #ffb480;
+  color: #f2edf5;
+  background: #16111a;
+}
+
+[data-theme="dark"] body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+[data-theme="dark"] .rail {
+  background: #1a131f;
+  border-right-color: var(--line);
+  color: var(--ink);
+}
+
+[data-theme="dark"] .rail-link {
+  color: #b0a3b6;
+}
+[data-theme="dark"] .rail-link:hover {
+  color: #f4c4e7;
+  background: #2b1d30;
+}
+[data-theme="dark"] .rail-link.selected {
+  color: #ff8ac8;
+}
+[data-theme="dark"] .rail-highlight {
+  background: linear-gradient(106deg, #381c34, #2c1a38);
+  border-color: #55274f;
+}
+[data-theme="dark"] .rail-link small {
+  background: #4a1939;
+  color: #ff9fd5;
+}
+
+[data-theme="dark"] .storage {
+  background: #1f1725;
+  border-color: #382c40;
+  color: #f2edf5;
+}
+[data-theme="dark"] .storage:hover {
+  background: #2b1c31;
+  border-color: #5d3558;
+}
+[data-theme="dark"] .storage-icon {
+  background: #331e33;
+  color: #ff8ac8;
+}
+[data-theme="dark"] .storage small,
+[data-theme="dark"] .storage > svg {
+  color: #a395aa;
+}
+
+[data-theme="dark"] .rail-meta {
+  border-top-color: var(--line);
+}
+[data-theme="dark"] .rail-github-link {
+  background: #1f1725;
+  border-color: #382c40;
+  color: #f2edf5;
+}
+[data-theme="dark"] .rail-github-link:hover {
+  background: #2b1c31;
+  border-color: #5d3558;
+  color: #ff8ac8;
+}
+[data-theme="dark"] .version-tag {
+  background: #3a1c35;
+  color: #ff9fd5;
+}
+
+[data-theme="dark"] .window-bar {
+  background: var(--paper);
+  border-bottom-color: var(--line);
+}
+[data-theme="dark"] .breadcrumbs {
+  color: #a395aa;
+}
+[data-theme="dark"] .breadcrumbs strong {
+  color: #f2edf5;
+}
+[data-theme="dark"] .theme-toggle-btn,
+[data-theme="dark"] .github-pill {
+  background: #201826;
+  border-color: #382c40;
+  color: #f2edf5;
+}
+[data-theme="dark"] .theme-toggle-btn:hover,
+[data-theme="dark"] .github-pill:hover {
+  background: #2b1c31;
+  border-color: #5d3558;
+  color: #ff8ac8;
+}
+[data-theme="dark"] .account-pill {
+  background: #201826;
+  border-color: #382c40;
+  color: #f2edf5;
+}
+[data-theme="dark"] .account-pill:hover {
+  background: #2b1c31;
+  border-color: #5d3558;
+}
+[data-theme="dark"] .account-arrow {
+  color: #b0a3b6;
+}
+
+[data-theme="dark"] .main-content {
+  scrollbar-color: #4b3850 transparent;
+}
+
+[data-theme="dark"] .startup-error {
+  background: #361714;
+  border-color: #59251f;
+  color: #ffb8ad;
+}
+
+[data-theme="dark"] .hero {
+  border-color: #3d2843;
+  color: #f6edf8;
+  background:
+    radial-gradient(ellipse at 93% 26%, #421c4e, transparent 64%),
+    radial-gradient(ellipse at 54% 115%, #461f2f, transparent 51%),
+    linear-gradient(110deg, #221626, #1a1220);
+}
+[data-theme="dark"] .hero h1 em {
+  background: linear-gradient(108deg, #ff57a0 3%, #cf55ea 74%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme="dark"] .hero p {
+  color: #bfaec6;
+}
+[data-theme="dark"] .hero-art-ring {
+  border-color: #8b3c6e7a;
+  background: #ffffff0d;
+}
+[data-theme="dark"] .hero-photo {
+  border-color: #261b2e;
+  box-shadow: 0 20px 45px #00000088, 0 5px 12px #26153540;
+}
+
+[data-theme="dark"] .statistics {
+  background: var(--white);
+  border-color: var(--line);
+}
+[data-theme="dark"] .metric:hover {
+  background: #291d2e;
+}
+[data-theme="dark"] .metric + .metric {
+  border-left-color: var(--line);
+}
+[data-theme="dark"] .metric-icon {
+  background: #331e33;
+  color: #ff8ac8;
+}
+[data-theme="dark"] .metric-copy strong {
+  color: #f2edf5;
+}
+[data-theme="dark"] .metric-arrow {
+  color: #a395aa;
+}
+
+[data-theme="dark"] .panel {
+  background: var(--white);
+  border-color: var(--line);
+}
+[data-theme="dark"] .panel-icon {
+  background: #331e33;
+  color: #ff8ac8;
+}
+[data-theme="dark"] .icon-button {
+  color: #a395aa;
+}
+[data-theme="dark"] .icon-button:hover {
+  background: #2b1c31;
+  color: #ff9fd5;
+}
+
+[data-theme="dark"] .empty-art {
+  border-color: #55274f;
+  background: #2b192e;
+  color: #ff8ac8;
+}
+[data-theme="dark"] .empty-art span,
+[data-theme="dark"] .empty-art i {
+  background: #8b3c6e;
+}
+
+[data-theme="dark"] .activity-jobs li + li {
+  border-top-color: #2b2131;
+}
+[data-theme="dark"] .activity-job:hover {
+  background: #291d2e;
+}
+
+[data-theme="dark"] .soft-button {
+  background: #201826;
+  border-color: #382c40;
+  color: #f2edf5;
+}
+[data-theme="dark"] .soft-button:hover {
+  background: #2b1c31;
+  border-color: #5d3558;
+}
+[data-theme="dark"] .danger-button {
+  background: #341815;
+  border-color: #55241e;
+  color: #ff9f90;
+}
+[data-theme="dark"] .danger-button:hover {
+  background: #441f1a;
+}
+
+[data-theme="dark"] .queue-banner {
+  background: #2f2a18;
+  border-color: #4b4224;
+  color: #ffefa3;
+}
+
+[data-theme="dark"] .list-toolbar {
+  border-bottom-color: var(--line);
+}
+[data-theme="dark"] .search-box {
+  background: #19121d;
+  border-color: #382c40;
+  color: #a395aa;
+}
+[data-theme="dark"] .search-box input {
+  color: #f2edf5;
+}
+[data-theme="dark"] .status-filter {
+  background: #19121d;
+  border-color: #382c40;
+  color: #f2edf5;
+}
+
+[data-theme="dark"] .job-list li + li {
+  border-top-color: var(--line);
+}
+[data-theme="dark"] .job-row:hover {
+  background: #291d2e;
+}
+[data-theme="dark"] .job-icon {
+  background: #331e33;
+  color: #ff8ac8;
+}
+[data-theme="dark"] .job-row-arrow {
+  color: #a395aa;
+}
+[data-theme="dark"] .job-badge {
+  background: #2d2134;
+  color: #bfb0c6;
+}
+[data-theme="dark"] .state-running,
+[data-theme="dark"] .state-completed {
+  background: #143521;
+  color: #6de59b;
+}
+[data-theme="dark"] .state-cooldown,
+[data-theme="dark"] .state-partial,
+[data-theme="dark"] .state-interrupted {
+  background: #392e13;
+  color: #fed868;
+}
+[data-theme="dark"] .state-failed {
+  background: #3d1a16;
+  color: #ff9182;
+}
+
+[data-theme="dark"] .list-pages {
+  border-top-color: var(--line);
+}
+
+[data-theme="dark"] .job-dialog {
+  background: #201826;
+  border-color: #3e2e47;
+  color: var(--ink);
+  box-shadow: 0 18px 80px #000000aa;
+}
+[data-theme="dark"] .job-dialog::backdrop {
+  background: #09040cb8;
+}
+[data-theme="dark"] .job-info {
+  background: #17111c;
+  border-color: var(--line);
+}
+[data-theme="dark"] .job-info > div + div {
+  border-left-color: var(--line);
+}
+[data-theme="dark"] .job-message {
+  background: #2f1931;
+  color: #f5b7ea;
+}
+[data-theme="dark"] .job-message-error {
+  background: #381916;
+  color: #ffa596;
+}
+[data-theme="dark"] .logs,
+[data-theme="dark"] .empty-log {
+  background: #16101a;
+  border-color: var(--line);
+  color: #b8a9bf;
+}
+[data-theme="dark"] .log-error {
+  color: #ff8d7e;
+}
+[data-theme="dark"] .log-warn {
+  color: #ffd86e;
+}
+
+[data-theme="dark"] .toast {
+  background: #2a162b;
+  border-color: #55264d;
+  color: #ffc4e8;
+  box-shadow: 0 8px 26px #00000088;
+}
+[data-theme="dark"] .toast-error {
+  background: #381815;
+  border-color: #5d241e;
+  color: #ffaba0;
 }

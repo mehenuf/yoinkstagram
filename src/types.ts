@@ -110,6 +110,8 @@ export interface ArchivistApi {
   cancelAuth(): Promise<void>;
   logout(): Promise<void>;
   openInstagram(url: string): Promise<void>;
+  openExternal?(url: string): Promise<void>;
+  setThemeOverlay?(isDark: boolean): Promise<void>;
   setSettings(settings: Partial<Settings>): Promise<void>;
 }
 

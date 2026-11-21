@@ -1,28 +1,86 @@
+<div align="center">
+
+<img src="src/assets/mark.png" alt="Yoinkstagram Logo" width="108" height="108" style="border-radius: 24px;" />
+
 # Yoinkstagram
 
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)](#verify)
-[![Platform](https://img.shields.io/badge/platform-Windows%2010%2B-blue?style=flat-square)](#downloads--installers)
-[![Architecture](https://img.shields.io/badge/arch-x64%20%7C%20arm64-informational?style=flat-square)](#downloads--installers)
-[![Electron](https://img.shields.io/badge/Electron-45.4-47848F?style=flat-square&logo=electron&logoColor=white)](https://www.electronjs.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
-[![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
+### The High-Performance Instagram Archival Workspace for Windows
 
-A high-performance Windows desktop workspace for preserving Instagram media and metadata. Built with Electron, React, and an isolated Python archival engine.
+[![Release](https://img.shields.io/badge/release-v1.1.0-e54b9c?style=for-the-badge&logo=github)](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0)
+[![Platform](https://img.shields.io/badge/platform-Windows%2010%20%2F%2011-0078D4?style=for-the-badge&logo=windows)](https://github.com/mehenuf/yoinkstagram/releases)
+[![Architecture](https://img.shields.io/badge/architecture-x64%20%7C%20arm64-24292e?style=for-the-badge)](https://github.com/mehenuf/yoinkstagram/releases)
+[![Build Status](https://img.shields.io/badge/build-passing-success?style=for-the-badge)](https://github.com/mehenuf/yoinkstagram/actions)
+[![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
+
+<p align="center">
+  <strong>Yoinkstagram</strong> is a modern, privacy-first desktop application engineered for seamless mass-downloading, structured metadata preservation, and resilient archiving of Instagram profiles, reels, stories, highlights, and posts.
+</p>
+
+<p align="center">
+  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0"><strong>📥 Download v1.1.0 Installer</strong></a> •
+  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0"><strong>⚡ Download Portable Edition</strong></a> •
+  <a href="#features"><strong>Explore Features</strong></a> •
+  <a href="#quick-start"><strong>Build from Source</strong></a>
+</p>
+
+</div>
 
 ---
 
-## Highlights
+## ⚡ What's New in v1.1.0
 
-- **Multi-Source Archiving**: Archive full user profiles, posts, reels, carousels, highlights, tagged media, and followed feeds.
-- **Granular Target Filtering**: Filter by date boundaries, regex caption patterns, carousel slide indices, or custom collection limits.
-- **Resumable Queue Engine**: Background job scheduler with automated rate-limit backoff, server cooldown tracking, and resumable JSON/XZ cursor checkpoints.
-- **Zero-Cloud Local Vault**: Account credentials and session tokens are encrypted at rest using Windows DPAPI (`safeStorage`) and stored strictly on your local machine.
-- **Modern Embedded Verification**: Streamlined popup login supporting two-factor authentication and automatic session synchronization.
-- **Rich Metadata Extraction**: Captures sidecar comments, geotags, timestamps, and JSON-formatted post metrics alongside high-resolution media.
+- 🌙 **Full Dark Mode & Theme Harmonization**: Switch seamlessly between Obsidian Dark Mode, Crisp Light Mode, or sync automatically with Windows 11 system preferences. Includes native Windows Title Bar caption color synchronization.
+- 👨‍💻 **In-App Developer Credits & Repository Reference**: Integrated attribution to **Md. Mehenuf Hossain Bhuiyan** and direct repository & release exploration links right inside the software.
+- 📐 **Responsive Workspace Layout**: Re-engineered interface utilizing screen space efficiently across 4K, ultrawide, standard laptop, and compact window dimensions.
+- 🛡️ **Anti-Detection Pacing & Human-Mimicking Jitter**: Automated rate-limit backoff, server cooldown tracking, and randomized request pacing to prevent false "account compromised" security challenges.
 
 ---
 
-## System Architecture
+## 🎬 Operational Showcase
+
+### 1. Intuitive Target Queuing & Granular Filtering
+Add any target with one click—profiles, individual reels, post carousels, or tagged collections. Configure content filters on the fly.
+
+<div align="center">
+  <img src="docs/assets/demo-queue.gif" alt="Target Queuing & Filter Showcase" width="820" style="border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+</div>
+
+<br/>
+
+### 2. Day & Night: Responsive Dark & Light UI
+Crafted with comfortable contrast, custom typography (DM Sans), and zero visual fatigue during marathon archival sessions.
+
+<div align="center">
+  <img src="docs/assets/demo-theme.gif" alt="Dark Mode & Theme Showcase" width="820" style="border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+</div>
+
+<br/>
+
+### 3. Live Archival Engine & Resumable Checkpoints
+Real-time download telemetry, live log streaming, automatic rate-limit cooldown, and persistent JSON/XZ cursor recovery.
+
+<div align="center">
+  <img src="docs/assets/demo-download.gif" alt="Download Progress & Engine Showcase" width="820" style="border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
+</div>
+
+---
+
+## ✨ Features at a Glance
+
+| Feature | Description |
+| :--- | :--- |
+| **Comprehensive Source Support** | Save posts, reels, sidecar carousels, stories, highlights, tagged media, and followed feeds. |
+| **Granular Target Filters** | Filter media by date boundaries (`after` / `before`), regex caption matchers, slide indices, or max count. |
+| **Zero-Cloud Local Vault** | Account cookies (`sessionid`, `ds_user_id`, `csrftoken`) are encrypted on disk via **Windows DPAPI** (`safeStorage`). |
+| **Resumable Queue Engine** | Resumes interrupted downloads where they left off using compressed checkpoint journals (`.json.xz`). |
+| **Anti-Detection Pacing** | Human-mimicking jittered sleep intervals and exponential backoff safeguard your account against automated blocks. |
+| **Sidecar & Rich Metadata** | Preserves caption text, comments, geotag coordinates, timestamp metadata, and raw JSON post metrics. |
+| **Modern Embedded Login** | Streamlined verification window supporting Two-Factor Authentication (2FA) with automatic cookie capture. |
+| **Cross-Architecture Native** | Tailored packages for 64-bit Intel/AMD (`x64`) and ARM64 devices (Snapdragon X Elite, Surface Pro). |
+
+---
+
+## 🏛️ System Architecture
 
 ```
 ┌────────────────────────────────────────────────────────┐
@@ -33,7 +91,7 @@ A high-performance Windows desktop workspace for preserving Instagram media and 
 ┌───────────────────────────▼────────────────────────────┐
 │              Electron Main Process (Node.js)           │
 │   • Task Queue Orchestrator   • SafeStorage DPAPI      │
-│   • Session Cookie Store      • Native Window Chrome   │
+│   • Session Cookie Store      • Native Windows Chrome  │
 └───────────────────────────┬────────────────────────────┘
                             │ Subprocess IPC (JSON Streams)
 ┌───────────────────────────▼────────────────────────────┐
@@ -45,30 +103,30 @@ A high-performance Windows desktop workspace for preserving Instagram media and 
 
 ---
 
-## Downloads & Installers
+## 📦 Downloads & Binaries (v1.1.0)
 
-Pre-built binaries are generated for modern 64-bit and ARM64 Windows environments:
+Pre-built releases are signed and packaged for modern Windows 10 and Windows 11 systems:
 
-| Package | Architecture | Description |
-| :--- | :--- | :--- |
-| **Yoinkstagram Setup** (`.exe`) | `x64` | Full Windows NSIS installer with desktop shortcut and uninstaller |
-| **Yoinkstagram Portable** (`.exe`) | `x64` | Standalone single-file executable requiring no installation |
-| **Yoinkstagram Package** (`.zip`) | `x64` | Portable archive bundle ready to unpack and run |
-| **Yoinkstagram ARM64** (`.zip`) | `arm64` | Native ARM64 package optimized for Snapdragon X Elite and Surface ARM |
+| Package | Architecture | Type | Direct Download Link |
+| :--- | :--- | :--- | :--- |
+| **Yoinkstagram Setup** | `x64` | NSIS Installer | [Yoinkstagram-Setup-1.1.0.exe](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0) |
+| **Yoinkstagram Portable** | `x64` | Standalone Exe | [Yoinkstagram-1.1.0-portable.exe](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0) |
+| **Yoinkstagram Package** | `x64` | Portable Zip | [Yoinkstagram-1.1.0-windows-x64.zip](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0) |
+| **Yoinkstagram ARM64** | `arm64` | Portable Zip | [Yoinkstagram-1.1.0-windows-arm64.zip](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0) |
 
-> **Note**: Electron 45 dropped legacy 32-bit (`ia32`) support. For 32-bit systems, please build from source using an older Electron runtime.
+> **Note on 32-bit (x86)**: Modern Electron versions (v45+) natively target 64-bit systems. For legacy 32-bit environments, users can run the source code on a 32-bit Node.js / Python environment.
 
 ---
 
-## Quick Start (Building from Source)
+## 🚀 Quick Start (Building from Source)
 
 ### Prerequisites
 
-- **Node.js**: v22.12 or newer
+- **Node.js**: v22.12.0 or newer
 - **Python**: 64-bit Python 3.11, 3.12, or 3.13
 - **Git**
 
-### Installation
+### Installation & Launch
 
 1. **Clone the repository**:
    ```powershell
@@ -84,65 +142,76 @@ Pre-built binaries are generated for modern 64-bit and ARM64 Windows environment
    pip install "pyinstaller>=6.11,<7"
    ```
 
-3. **Install Node dependencies**:
+3. **Install npm dependencies**:
    ```powershell
    npm ci
    ```
 
-4. **Launch development environment**:
+4. **Launch development mode**:
    ```powershell
    npm run dev
    ```
 
 ---
 
-## Packaging Binaries
+## 🔨 Packaging Distributables Locally
 
-To produce standalone executables and distributables locally:
+To produce standalone Windows installers and binaries on your machine:
 
 ```powershell
-# Compile frontend and standalone Python engine
+# Compile React frontend and bundle standalone Python engine
 npm run build
 npm run build:engine
 
-# Package Windows x64 Setup installer
+# Package Windows NSIS Installer (x64)
 npm run package:setup
 
-# Package Windows x64 Portable executable
+# Package Portable Standalone Executable (x64)
 npm run package:portable
 
-# Package Windows ARM64 bundle
+# Package Windows ARM64 Distribution (arm64)
 npm run package:arm64
 ```
 
-Output binaries will be located in the `release/` folder.
+Generated outputs will be placed in the `release/` directory.
 
 ---
 
-## Verification & Testing
+## 🧪 Testing & Verification
 
-Yoinkstagram includes a comprehensive test suite across the Electron host, IPC bridges, and Python engine:
+Yoinkstagram is backed by end-to-end unit tests covering IPC bridges, rate-limit backoffs, session guards, and target normalization:
 
 ```powershell
-# Run Electron & Frontend unit tests
+# Run frontend and Electron host unit tests
 npm test
 
-# Run Python engine test suite
+# Run Python engine tests
 .\.venv\Scripts\python.exe -m unittest discover -s engine -t .
 ```
 
 ---
 
-## Security & Storage Policy
+## 🔒 Security & Privacy Architecture
 
-- **Credential Safety**: Passwords are never stored on disk. When authenticating via the embedded browser, session cookies (`sessionid`, `ds_user_id`, `csrftoken`) are captured and secured using Windows Data Protection API (DPAPI).
-- **Telemetry Free**: Yoinkstagram does not phone home, contain tracking analytics, or send user information to third-party endpoints.
-- **Local Media**: All downloaded photos, videos, and metadata files remain exclusively in the local folder you designate.
+- **Hardware-Level Encryption**: Session tokens and cookies are secured using Windows Data Protection API (DPAPI). Only your logged-in Windows account can decrypt the session.
+- **Strictly Local Storage**: Your credentials, saved media, and metadata are saved exclusively to the destination folder you designate. No remote telemetry or tracking scripts.
+- **Open Source Transparency**: Every line of code orchestrating network requests and file operations is fully visible in this repository.
 
 ---
 
-## Legal & Compliance
+## 👤 Author & Credits
 
-This software is an independent open-source utility designed for personal archiving, backup, and research. Yoinkstagram is not affiliated with, endorsed by, or sponsored by Instagram, Meta, or any related entity.
+Developed with precision by **[Md. Mehenuf Hossain Bhuiyan](https://github.com/mehenuf)**.
 
-Always respect creators' intellectual property rights and adhere to applicable platform terms of service when preserving content.
+- **GitHub**: [@mehenuf](https://github.com/mehenuf)
+- **Repository**: [https://github.com/mehenuf/yoinkstagram](https://github.com/mehenuf/yoinkstagram)
+
+If you find this project useful, please consider giving it a ⭐ on GitHub!
+
+---
+
+## ⚖️ License & Disclaimer
+
+Released under the **[MIT License](LICENSE)**.
+
+*Disclaimer: Yoinkstagram is an independent archival tool created for personal backup and educational research. It is not affiliated with, endorsed by, or sponsored by Instagram, Meta, or any related entity. Please respect creators' copyrights and platform terms of service.*

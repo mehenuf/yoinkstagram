@@ -24,5 +24,7 @@ contextBridge.exposeInMainWorld('archivist', {
   cancelAuth: () => ipcRenderer.invoke('archivist:cancel-auth'),
   logout: () => ipcRenderer.invoke('archivist:logout'),
   openInstagram: (url) => ipcRenderer.invoke('archivist:open-instagram', url),
+  openExternal: (url) => ipcRenderer.invoke('archivist:open-external', url),
+  setThemeOverlay: (isDark) => ipcRenderer.invoke('archivist:set-theme-overlay', isDark),
   setSettings: (settings) => ipcRenderer.invoke('archivist:settings', settings),
 });

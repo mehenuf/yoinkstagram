@@ -1,13 +1,14 @@
 import {
-  AtSign, Bookmark, Camera, Check, ChevronDown, CircleHelp, Download,
-  ExternalLink, FileJson, Folder, FolderOpen, Hash, Images, Link2, ListPlus,
-  LoaderCircle, LockKeyhole, LogOut, MapPin, Plus, Radio, Settings2, ShieldCheck,
-  SlidersHorizontal, Users, X,
+  AtSign, Bookmark, Camera, Check, ChevronDown, CircleHelp, Code2, Download,
+  ExternalLink, FileJson, Folder, FolderOpen, Hash, Images, Laptop, Link2, ListPlus,
+  LoaderCircle, LockKeyhole, LogOut, MapPin, Moon, Plus, Radio, Settings2, ShieldCheck,
+  SlidersHorizontal, Sun, Users, X,
 } from 'lucide-react';
 import { useId, useLayoutEffect, useRef, useState } from 'react';
 import type { FormEvent, ReactNode } from 'react';
 import type { ArchivistApi, AuthResult, DownloadOptions, JobRequest, Settings } from './types';
 import { normalizeTargets } from './panels/targets';
+import { GithubIcon } from './GithubIcon';
 import './workbench.css';
 
 type Source = JobRequest['targetType'];
@@ -545,12 +546,24 @@ export function Workbench({ api, settings, account, onSignIn, onEnqueued }: {
   );
 }
 
-export function SettingsPanel({ api, settings, account, version, onSignIn }: {
+export function SettingsPanel({
+  api,
+  settings,
+  account,
+  version,
+  onSignIn,
+  theme = 'system',
+  onSelectTheme,
+  onOpenUrl,
+}: {
   api: ArchivistApi;
   settings: Settings;
   account: string | null;
   version: string;
   onSignIn(): void;
+  theme?: 'light' | 'dark' | 'system';
+  onSelectTheme?(theme: 'light' | 'dark' | 'system'): void;
+  onOpenUrl?(url: string): void;
 }) {
   const [issue, setIssue] = useState('');
   const [busy, setBusy] = useState(false);
@@ -566,11 +579,21 @@ export function SettingsPanel({ api, settings, account, version, onSignIn }: {
     }
   }
 
+  function openExternal(url: string) {
+    if (onOpenUrl) {
+      onOpenUrl(url);
+    } else if (api.openExternal) {
+      void api.openExternal(url);
+    } else {
+      window.open(url, '_blank');
+    }
+  }
+
   return (
     <section className="wb-settings" aria-labelledby="wb-settings-title">
       <div className="wb-page-heading">
         <h1 id="wb-settings-title">Settings</h1>
-        <p>Manage your Instagram session, download folder, and display preferences.</p>
+        <p>Manage your Instagram session, storage destination, and workspace appearance.</p>
       </div>
       {issue && <p className="wb-message" role="alert">{issue}</p>}
       <div className="wb-settings-group">
@@ -582,6 +605,7 @@ export function SettingsPanel({ api, settings, account, version, onSignIn }: {
           </div>
           <button className="wb-button wb-button-light" type="button" onClick={onSignIn}>{account ? 'Manage session' : 'Sign in'}</button>
         </div>
+
         <div className="wb-settings-row">
           <span className="wb-mark"><Folder size={18} /></span>
           <div className="wb-settings-label">
@@ -598,14 +622,72 @@ export function SettingsPanel({ api, settings, account, version, onSignIn }: {
             })}>Choose folder</button>
           </div>
         </div>
+
+        <div className="wb-settings-row">
+          <span className="wb-mark"><Sun size={18} /></span>
+          <div className="wb-settings-label">
+            <h2>Appearance & Theme</h2>
+            <p>Customize the workspace styling for comfortable daytime or low-light viewing.</p>
+          </div>
+          <div className="wb-theme-picker" role="radiogroup" aria-label="Select theme">
+            <button
+              type="button"
+              className={`wb-theme-btn ${theme === 'light' ? 'selected' : ''}`}
+              onClick={() => onSelectTheme?.('light')}
+              title="Light theme"
+            >
+              <Sun size={15} /> <span>Light</span>
+            </button>
+            <button
+              type="button"
+              className={`wb-theme-btn ${theme === 'dark' ? 'selected' : ''}`}
+              onClick={() => onSelectTheme?.('dark')}
+              title="Dark theme"
+            >
+              <Moon size={15} /> <span>Dark</span>
+            </button>
+            <button
+              type="button"
+              className={`wb-theme-btn ${theme === 'system' ? 'selected' : ''}`}
+              onClick={() => onSelectTheme?.('system')}
+              title="Match system theme"
+            >
+              <Laptop size={15} /> <span>System</span>
+            </button>
+          </div>
+        </div>
+
         <div className="wb-settings-row">
           <span className="wb-mark"><Settings2 size={18} /></span>
           <Switch label="Reduce motion" description="Tone down transitions and animated movement." checked={settings.reduceMotion} disabled={busy} onChange={(reduceMotion) => void perform(() => api.setSettings({ reduceMotion }))} />
         </div>
-        <div className="wb-settings-row">
-          <span className="wb-mark"><CircleHelp size={18} /></span>
-          <div className="wb-settings-label"><h2>Yoinkstagram</h2></div>
-          <span className="wb-version">{version}</span>
+
+        <div className="wb-settings-row wb-about-row">
+          <span className="wb-mark"><Code2 size={18} /></span>
+          <div className="wb-settings-label">
+            <h2>About Yoinkstagram</h2>
+            <p>
+              Developed by <strong>Md. Mehenuf Hossain Bhuiyan</strong>. Open-source local desktop archival workspace released under the MIT License.
+            </p>
+          </div>
+          <div className="wb-settings-actions">
+            <button
+              className="wb-button wb-button-light"
+              type="button"
+              onClick={() => openExternal('https://github.com/mehenuf/yoinkstagram')}
+              title="Open GitHub repository in browser"
+            >
+              <GithubIcon size={15} /> <span>Repository</span>
+            </button>
+            <button
+              className="wb-button wb-button-light"
+              type="button"
+              onClick={() => openExternal('https://github.com/mehenuf/yoinkstagram/releases')}
+              title="View releases & changelog on GitHub"
+            >
+              <ExternalLink size={15} /> <span>v{version} Releases</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>

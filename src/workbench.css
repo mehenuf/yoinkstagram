@@ -940,7 +940,65 @@
 .wb-settings-actions {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.wb-about-row {
+  align-items: flex-start;
+  padding-block: 18px;
+}
+
+.wb-about-row .wb-settings-label p {
+  white-space: normal;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.wb-about-row .wb-settings-label strong {
+  color: var(--wb-ink);
+  font-weight: 650;
+}
+
+.wb-theme-picker {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 3px;
+  border-radius: 12px;
+  background: var(--wb-wash);
+  border: 1px solid var(--wb-line);
+}
+
+.wb-theme-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 11px;
+  border-radius: 9px;
+  border: 0;
+  background: transparent;
+  color: var(--wb-muted);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s var(--wb-ease), color .2s var(--wb-ease), box-shadow .2s var(--wb-ease);
+}
+
+.wb-theme-btn:hover {
+  color: var(--wb-ink);
+  background: #ffffff80;
+}
+
+.wb-theme-btn.selected {
+  background: #fff;
+  color: var(--wb-accent);
+  box-shadow: 0 2px 7px #00000014;
+}
+
+.wb-theme-btn svg {
+  flex-shrink: 0;
 }
 
 .wb-version {
@@ -1056,4 +1114,193 @@
 [data-reduced-motion="true"] .wb-dialog::backdrop {
   animation: none !important;
   transition: none !important;
+}
+
+/* ==========================================================================
+   Dark Mode System & Overrides for Workbench
+   ========================================================================== */
+
+[data-theme="dark"] .wb-card,
+[data-theme="dark"] .wb-dialog,
+[data-theme="dark"] .wb-settings {
+  --wb-ink: #f2edf5;
+  --wb-muted: #a395aa;
+  --wb-line: #352a3b;
+  --wb-wash: #18121d;
+  --wb-accent: #e54b9c;
+  --wb-accent-hover: #ff67b0;
+  --wb-focus: #f054a5;
+  --wb-surface-tint: linear-gradient(130deg, #2b1825, #26172a 56%, #1a1628);
+  --wb-spectrum: linear-gradient(110deg, #ff9d4e, #f34275 58%, #ad49da);
+  --wb-action: linear-gradient(110deg, #cc3664, #b92578 58%, #8f3eb5);
+  color: var(--wb-ink);
+}
+
+[data-theme="dark"] .wb-card {
+  background: #201826;
+  border-color: var(--wb-line);
+  box-shadow: 0 4px 18px #00000040;
+}
+
+[data-theme="dark"] .wb-mark {
+  border-color: #52274d;
+  background: #2e182f;
+  color: #ff8ac8;
+}
+
+[data-theme="dark"] .wb-source {
+  border-color: var(--wb-line);
+  background: #1a1320;
+}
+[data-theme="dark"] .wb-source:hover,
+[data-theme="dark"] .wb-source:focus-within {
+  border-color: #683661;
+  background: #251a2d;
+}
+
+[data-theme="dark"] .wb-entry-source {
+  background: #17111c;
+  border-color: var(--wb-line);
+}
+[data-theme="dark"] .wb-entry-input {
+  color: #f2edf5;
+}
+[data-theme="dark"] .wb-content-chips button {
+  background: #1c1522;
+  border-color: var(--wb-line);
+  color: var(--wb-muted);
+}
+[data-theme="dark"] .wb-content-chips button:hover {
+  border-color: #6a3a60;
+  color: #ff8ac8;
+}
+[data-theme="dark"] .wb-content-chips button[aria-pressed="true"] {
+  border-color: #7d2965;
+  background: var(--wb-surface-tint);
+  color: #ff9fd5;
+}
+
+[data-theme="dark"] .wb-output {
+  background: #19121d;
+  border-top-color: var(--wb-line);
+  color: var(--wb-muted);
+}
+
+[data-theme="dark"] .wb-message {
+  background: #361714;
+  border-color: #59251f;
+  color: #ffa596;
+}
+[data-theme="dark"] .wb-auth-hint,
+[data-theme="dark"] .wb-checkpoint {
+  background: #2e2615;
+  border-color: #4f4222;
+  color: #ffe69c;
+}
+
+[data-theme="dark"] .wb-dialog {
+  background: #201826;
+  border-color: #3e2e47;
+  color: var(--wb-ink);
+  box-shadow: 0 25px 90px #000000aa;
+}
+[data-theme="dark"] .wb-dialog::backdrop {
+  background: #09040cb8;
+}
+[data-theme="dark"] .wb-dialog-footer {
+  background: #19121d;
+  border-top-color: var(--wb-line);
+}
+[data-theme="dark"] .wb-option-tabs {
+  border-bottom-color: var(--wb-line);
+}
+[data-theme="dark"] .wb-switch-row {
+  border-color: #2e2434;
+  background: #1c1522;
+}
+[data-theme="dark"] .wb-option-section .wb-switch-row:hover:not(:has(input:disabled)) {
+  border-color: #5d3558;
+  background: #271a2b;
+}
+[data-theme="dark"] .wb-switch > span {
+  background: #392b41;
+}
+[data-theme="dark"] .wb-switch input:checked + span {
+  background-color: #c43884;
+}
+[data-theme="dark"] .wb-field :is(input, textarea, select) {
+  background: #17111c;
+  border-color: var(--wb-line);
+  color: var(--wb-ink);
+}
+[data-theme="dark"] .wb-field :is(input, textarea, select):hover {
+  border-color: #584163;
+}
+[data-theme="dark"] .wb-field :is(input, textarea, select):focus {
+  border-color: var(--wb-focus);
+  background: #1d1523;
+}
+
+[data-theme="dark"] .wb-auth-state {
+  border-color: #57294e;
+  background: var(--wb-surface-tint);
+  color: #ff8ac8;
+}
+[data-theme="dark"] .wb-signin-option {
+  border-color: var(--wb-line);
+  background: #1c1522;
+  color: var(--wb-ink);
+}
+[data-theme="dark"] .wb-signin-option:hover:not(:disabled) {
+  border-color: #5d3558;
+  background: #251b2c;
+}
+[data-theme="dark"] .wb-signin-primary {
+  border-color: #6d2c5a;
+  background: var(--wb-surface-tint);
+}
+[data-theme="dark"] .wb-signin-primary:hover:not(:disabled) {
+  border-color: #923a78;
+  background: #2e172e;
+}
+[data-theme="dark"] .wb-signin-option-icon {
+  background: #251b2c;
+  box-shadow: 0 1px 4px #00000040;
+}
+[data-theme="dark"] .wb-signin-primary .wb-signin-option-icon {
+  background: #341a32;
+}
+
+[data-theme="dark"] .wb-settings-group {
+  background: #201826;
+  border-color: var(--wb-line);
+}
+[data-theme="dark"] .wb-settings-row + .wb-settings-row {
+  border-top-color: #2c2132;
+}
+[data-theme="dark"] .wb-button-light {
+  background: #221927;
+  border-color: #392c42;
+  color: #f2edf5;
+}
+[data-theme="dark"] .wb-button-light:hover {
+  background: #2c2033;
+  border-color: #5d3558;
+}
+
+[data-theme="dark"] .wb-theme-picker {
+  background: #17111c;
+  border-color: var(--wb-line);
+}
+[data-theme="dark"] .wb-theme-btn {
+  color: #a395aa;
+}
+[data-theme="dark"] .wb-theme-btn:hover {
+  color: #f2edf5;
+  background: #261b2c;
+}
+[data-theme="dark"] .wb-theme-btn.selected {
+  background: #341e35;
+  color: #ff8ac8;
+  box-shadow: 0 2px 6px #00000040;
 }

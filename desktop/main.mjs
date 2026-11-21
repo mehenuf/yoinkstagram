@@ -13,7 +13,7 @@ const distPath = join(projectPath, 'dist');
 const prodOrigin = 'archivist://app/';
 const allowedDevOrigins = new Set(['http://127.0.0.1:5173', 'http://127.0.0.1:4173']);
 const devURL = !app.isPackaged && allowedDevOrigins.has(process.env.ARCHIVIST_DEV_URL) ? process.env.ARCHIVIST_DEV_URL : null;
-const platformHosts = new Set(['instagram.com', 'www.instagram.com', 'help.instagram.com', 'accountscenter.instagram.com']);
+const platformHosts = new Set(['instagram.com', 'www.instagram.com', 'help.instagram.com', 'accountscenter.instagram.com', 'github.com', 'www.github.com']);
 const contentTypes = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8',
   '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.avif': 'image/avif',
@@ -181,6 +181,29 @@ function registerActions() {
   handle('login-with-browser', () => loginWithBrowser());
 
   handle('login-with-google', () => loginWithGoogle());
+
+  handle('open-external', async (value) => {
+    let url;
+    try {
+      url = new URL(value);
+    } catch {
+      throw new Error('The URL is invalid.');
+    }
+    if (url.protocol !== 'https:' || !platformHosts.has(url.hostname) || url.port || url.username || url.password) {
+      throw new Error('The URL is not permitted.');
+    }
+    await shell.openExternal(url.href);
+  });
+
+  handle('set-theme-overlay', (isDark) => {
+    if (process.platform === 'win32' && window && !window.isDestroyed()) {
+      window.setTitleBarOverlay({
+        color: isDark ? '#0f0d14' : '#fbfafc',
+        symbolColor: isDark ? '#e6e0ec' : '#27222c',
+        height: 46,
+      });
+    }
+  });
 }
 
 function loginWithBrowser() {
