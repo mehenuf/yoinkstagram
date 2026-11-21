@@ -12,10 +12,10 @@
     "start": "electron .",
     "test": "node --test desktop/*.test.mjs src/panels/*.test.mjs",
     "build:engine": "node scripts/build-engine.mjs",
-    "package:setup": "electron-builder --win nsis --x64",
-    "package:portable": "electron-builder --win portable --x64",
-    "package:windows": "electron-builder --win nsis portable zip --x64",
-    "package:arm64": "electron-builder --win zip --arm64",
+    "package:setup": "electron-builder --win nsis --x64 --publish never",
+    "package:portable": "electron-builder --win portable --x64 --publish never",
+    "package:windows": "electron-builder --win nsis portable zip --x64 --publish never",
+    "package:arm64": "electron-builder --win zip --arm64 --publish never",
     "package:all": "npm run build && npm run build:engine && npm run package:windows && npm run package:arm64"
   },
   "devDependencies": {
@@ -32,6 +32,7 @@
     "vite": "8.3.8"
   },
   "build": {
+    "publish": null,
     "appId": "local.yoinkstagram.desktop",
     "productName": "Yoinkstagram",
     "directories": {
