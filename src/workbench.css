@@ -1304,3 +1304,116 @@
   color: #ff8ac8;
   box-shadow: 0 2px 6px #00000040;
 }
+
+/* ==========================================================================
+   GTA VI / Vice City Theme for Workbench Components
+   ========================================================================== */
+
+[data-theme="gta6"] .wb-card {
+  --wb-ink: #fdf5ff;
+  --wb-muted: #bda6cb;
+  --wb-line: #3f1952;
+  --wb-wash: #12091c;
+  --wb-accent: #ff2a8d;
+  --wb-accent-hover: #ff4099;
+  --wb-focus: #ff2a8d;
+  --wb-surface-tint: linear-gradient(130deg, #321038, #220d36 56%, #170929);
+  --wb-spectrum: linear-gradient(110deg, #ff914d, #ff2a8d 58%, #7422f2);
+  --wb-action: linear-gradient(110deg, #ff2a8d, #ff7b2b);
+  background: #170d24;
+  border-color: #3f1952;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="gta6"] .wb-mark {
+  background: #2b1037;
+  border-color: #4d1b64;
+  color: #ff2a8d;
+}
+
+[data-theme="gta6"] .wb-source,
+[data-theme="gta6"] .wb-entry {
+  background: #12091c;
+  border-color: #3d1850;
+  color: #fdf5ff;
+}
+
+[data-theme="gta6"] .wb-entry input {
+  color: #fdf5ff;
+}
+
+[data-theme="gta6"] .wb-entry:focus-within,
+[data-theme="gta6"] .wb-source:hover {
+  border-color: #ff2a8d;
+  box-shadow: 0 0 12px rgba(255, 42, 141, 0.25);
+}
+
+[data-theme="gta6"] .wb-chip {
+  background: #1a0f2b;
+  border-color: #3d1850;
+  color: #bda6cb;
+}
+[data-theme="gta6"] .wb-chip:hover {
+  border-color: #ff2a8d;
+  color: #ff9fd5;
+}
+[data-theme="gta6"] .wb-chip.selected {
+  background: linear-gradient(110deg, #ff2a8d, #ff7b2b);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 42, 141, 0.45);
+}
+
+[data-theme="gta6"] .wb-btn-primary {
+  background: linear-gradient(110deg, #ff2a8d, #ff7b2b);
+  box-shadow: 0 0 16px rgba(255, 42, 141, 0.45);
+}
+[data-theme="gta6"] .wb-btn-primary:hover {
+  background: linear-gradient(110deg, #ff4099, #ff8c42);
+  box-shadow: 0 0 24px rgba(255, 42, 141, 0.7);
+}
+
+[data-theme="gta6"] .wb-output-btn {
+  color: #ff9fd5;
+}
+[data-theme="gta6"] .wb-output-btn:hover {
+  color: #ff2a8d;
+  text-shadow: 0 0 8px rgba(255, 42, 141, 0.5);
+}
+
+[data-theme="gta6"] .wb-button-light {
+  background: #1a0f2b;
+  border-color: #3d1850;
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .wb-button-light:hover {
+  background: #251034;
+  border-color: #ff2a8d;
+  color: #ff9fd5;
+}
+
+[data-theme="gta6"] .wb-theme-picker {
+  background: #12091c;
+  border-color: #3d1850;
+}
+[data-theme="gta6"] .wb-theme-btn {
+  color: #bda6cb;
+}
+[data-theme="gta6"] .wb-theme-btn:hover {
+  color: #fdf5ff;
+  background: #251034;
+}
+[data-theme="gta6"] .wb-theme-btn.selected {
+  background: linear-gradient(110deg, #ff2a8d, #ff7b2b);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 42, 141, 0.45);
+}
+
+[data-theme="gta6"] .wb-dialog {
+  background: #170d24;
+  border-color: #4b1b60;
+  box-shadow: 0 20px 85px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 42, 141, 0.2);
+}
+[data-theme="gta6"] .wb-dialog::backdrop {
+  background: #06020abf;
+}

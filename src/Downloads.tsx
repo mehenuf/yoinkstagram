@@ -43,7 +43,7 @@ function Status({ status }: { status: JobStatus }) {
 export function Activity({ jobs, viewJob, openQueue }: {
   jobs: Job[]; viewJob: (id: string) => void; openQueue: () => void;
 }) {
-  const recent = [...jobs].sort((a, b) => b.updatedAt - a.updatedAt).slice(0, 4);
+  const recent = [...jobs].sort((a, b) => b.updatedAt - a.updatedAt).slice(0, 6);
   return (
     <section className="panel activity" aria-labelledby="activity-heading">
       <div className="activity-heading">
@@ -57,17 +57,29 @@ export function Activity({ jobs, viewJob, openQueue }: {
           <p>Your latest downloads will appear here.</p>
         </div>
       ) : (
-        <ul className="activity-jobs">
-          {recent.map((job) => (
-            <li key={job.id}>
-              <button type="button" className="activity-job" onClick={() => viewJob(job.id)}>
-                <span className="job-icon"><Download size={16} /></span>
-                <span className="activity-job-copy"><strong>{jobTitle(job)}</strong><small>{sources[job.request.targetType]}</small></span>
-                <Status status={job.status} />
-              </button>
-            </li>
-          ))}
-        </ul>
+        <>
+          <ul className="activity-jobs">
+            {recent.map((job) => (
+              <li key={job.id}>
+                <button type="button" className="activity-job" onClick={() => viewJob(job.id)}>
+                  <span className="job-icon"><Download size={16} /></span>
+                  <span className="activity-job-copy">
+                    <strong>{jobTitle(job)}</strong>
+                    <small>{job.files > 0 ? `${job.files} ${job.files === 1 ? 'file' : 'files'} saved` : sources[job.request.targetType]}</small>
+                  </span>
+                  <Status status={job.status} />
+                </button>
+              </li>
+            ))}
+          </ul>
+          <div className="activity-footer">
+            <span>{jobs.length} recorded {jobs.length === 1 ? 'download' : 'downloads'}</span>
+            <button type="button" className="activity-footer-btn" onClick={openQueue}>
+              <span>All downloads</span>
+              <ArrowRight size={13} />
+            </button>
+          </div>
+        </>
       )}
     </section>
   );

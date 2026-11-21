@@ -53,7 +53,7 @@ test('pending two-factor keeps a queued download idle until the challenge is dis
   assert.equal(queue.snapshot().account, 'earlier_account');
 });
 
-test('a rate-limited job waits and retries once before requiring manual action', async (t) => {
+test('a rate-limited job enters cooldown and persists across retries without dropping from queue', async (t) => {
   let attempts = 0;
   const { queue, request } = setup(t, (_command, onEvent) => {
     attempts += 1;
@@ -62,11 +62,11 @@ test('a rate-limited job waits and retries once before requiring manual action',
   });
   queue.enqueue(request);
   await setImmediate();
-  assert.equal(queue.snapshot().jobs[0].status, 'queued');
+  assert.equal(queue.snapshot().jobs[0].status, 'cooldown');
   assert.equal(queue.snapshot().jobs[0].files, 1);
-  await setTimeout(550);
+  await setTimeout(350);
   assert.equal(attempts, 2);
-  assert.equal(queue.snapshot().jobs[0].status, 'partial');
+  assert.equal(queue.snapshot().jobs[0].status, 'cooldown');
   assert.equal(queue.snapshot().jobs[0].files, 2);
 });
 

@@ -97,12 +97,17 @@ def draw_window_frame(draw, width, height, is_dark=False, title_section="Workspa
             draw.text((26, y_nav + 9), label, fill=muted, font=get_font(12, bold=False))
         y_nav += 42
 
-    # Rail footer: Author & Version
-    draw.line([(12, height - 72), (rail_w - 12, height - 72)], fill=border, width=1)
-    draw.text((18, height - 60), "By Md. Mehenuf H. B.", fill=ink, font=get_font(10, bold=True))
-    draw_rounded_rect(draw, [(18, height - 36), (62, height - 18)], radius=9, fill=(58, 28, 53) if is_dark else (249, 220, 233))
-    draw.text((25, height - 33), "v1.1.0", fill=accent, font=get_font(9, bold=True))
-    draw.text((72, height - 33), "MIT Open Source", fill=muted, font=get_font(9, bold=False))
+    # Rail footer: Storage, GitHub & Version
+    draw.line([(12, height - 105), (rail_w - 12, height - 105)], fill=border, width=1)
+    # GitHub box
+    draw_rounded_rect(draw, [(12, height - 96), (rail_w - 12, height - 66)], radius=8, fill=(32, 24, 38) if is_dark else (250, 247, 251), outline=border)
+    draw.text((18, height - 91), "mehenuf/yoinkstagram", fill=ink, font=get_font(9, bold=True))
+    draw.text((18, height - 78), "Source & Releases ↗", fill=muted, font=get_font(8, bold=False))
+
+    draw.text((14, height - 52), "Yoinkstagram", fill=ink, font=get_font(10, bold=True))
+    draw_rounded_rect(draw, [(rail_w - 48, height - 54), (rail_w - 14, height - 40)], radius=7, fill=(58, 28, 53) if is_dark else (249, 220, 233))
+    draw.text((rail_w - 44, height - 52), "v1.2.0", fill=accent, font=get_font(8, bold=True))
+    draw.text((14, height - 34), "By Md. Mehenuf H. B.", fill=muted, font=get_font(8, bold=False))
 
     return {
         "rail_w": rail_w,

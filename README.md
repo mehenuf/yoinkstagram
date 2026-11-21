@@ -6,7 +6,7 @@
 
 ### The High-Performance Instagram Archival Workspace for Windows
 
-[![Release](https://img.shields.io/badge/release-v1.1.0-e54b9c?style=for-the-badge&logo=github)](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0)
+[![Release](https://img.shields.io/badge/release-v1.2.0-e54b9c?style=for-the-badge&logo=github)](https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.0)
 [![Platform](https://img.shields.io/badge/platform-Windows%2010%20%2F%2011-0078D4?style=for-the-badge&logo=windows)](https://github.com/mehenuf/yoinkstagram/releases)
 [![Architecture](https://img.shields.io/badge/architecture-x64%20%7C%20arm64-24292e?style=for-the-badge)](https://github.com/mehenuf/yoinkstagram/releases)
 [![Build Status](https://img.shields.io/badge/build-passing-success?style=for-the-badge)](https://github.com/mehenuf/yoinkstagram/actions)
@@ -17,8 +17,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0"><strong>📥 Download v1.1.0 Installer</strong></a> •
-  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.1.0"><strong>⚡ Download Portable Edition</strong></a> •
+  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.0"><strong>📥 Download v1.2.0 Installer</strong></a> •
+  <a href="https://github.com/mehenuf/yoinkstagram/releases/tag/v1.2.0"><strong>⚡ Download Portable Edition</strong></a> •
   <a href="#features"><strong>Explore Features</strong></a> •
   <a href="#quick-start"><strong>Build from Source</strong></a>
 </p>
@@ -27,12 +27,16 @@
 
 ---
 
-## ⚡ What's New in v1.1.0
+## ⚡ What's New in v1.2.0
 
-- 🌙 **Full Dark Mode & Theme Harmonization**: Switch seamlessly between Obsidian Dark Mode, Crisp Light Mode, or sync automatically with Windows 11 system preferences. Includes native Windows Title Bar caption color synchronization.
-- 👨‍💻 **In-App Developer Credits & Repository Reference**: Integrated attribution to **Md. Mehenuf Hossain Bhuiyan** and direct repository & release exploration links right inside the software.
-- 📐 **Responsive Workspace Layout**: Re-engineered interface utilizing screen space efficiently across 4K, ultrawide, standard laptop, and compact window dimensions.
-- 🛡️ **Anti-Detection Pacing & Human-Mimicking Jitter**: Automated rate-limit backoff, server cooldown tracking, and randomized request pacing to prevent false "account compromised" security challenges.
+- 🔄 **Persistent Cooldown & Multi-Hour Auto-Resume**: Downloads never drop from the queue or get prematurely marked `partial` when Instagram imposes a rate limit. Tasks automatically enter a cooling-down state with progressive backoff (15m, 30m, 1h, 2h), stay in the active queue, and automatically resume exactly where they left off once the cooldown expires.
+- 🌴 **GTA VI Vice City Sunset Theme**: A playful, synthwave-inspired theme featuring tropical neon hot pink and sunset orange gradients, glowing status badges, luminous chip highlights, and animated neon headline flows, accessible directly from the top bar and settings.
+- 🛡️ **Anti-Ban Ultra-Safe Pacing & Human Jitter**: Conservative request pacing (3.0s - 5.0s jittered intervals) plus periodic 30-second browsing pauses every 15 requests. Guards against false "account compromised" security challenges and forced password resets.
+- 🌐 **Adaptive Connection Guard & Rapid Retry**: Transient network hiccups and soft-throttling are automatically caught and retried with exponential backoff (2s, 4s) before failing individual media. 3 consecutive connection issues trigger an automatic safety cooldown to protect your account from IP blocks.
+- 🎨 **Polished UI & Responsive Space Efficiency**:
+  - Re-architected sidebar footer with dedicated GitHub repository card (`mehenuf/yoinkstagram`), author credit for **Md. Mehenuf Hossain Bhuiyan**, and version indicator without overlapping or squished text.
+  - Eliminated dead vertical space in the Recent Activity card with expanded history view, file count metrics, and direct quick-navigation footer.
+  - Real operational showcase GIFs generated directly from the live Electron desktop app.
 
 ---
 
@@ -47,8 +51,8 @@ Add any target with one click—profiles, individual reels, post carousels, or t
 
 <br/>
 
-### 2. Day & Night: Responsive Dark & Light UI
-Crafted with comfortable contrast, custom typography (DM Sans), and zero visual fatigue during marathon archival sessions.
+### 2. Day, Night & Vice City: Responsive Themes & Dynamic Motion
+Switch seamlessly between Crisp Light, Obsidian Dark, and GTA VI Vice City Neon themes, with custom typography (DM Sans) and native Windows caption synchronization.
 
 <div align="center">
   <img src="docs/assets/demo-theme.gif" alt="Dark Mode & Theme Showcase" width="820" style="border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />
@@ -57,7 +61,7 @@ Crafted with comfortable contrast, custom typography (DM Sans), and zero visual 
 <br/>
 
 ### 3. Live Archival Engine & Resumable Checkpoints
-Real-time download telemetry, live log streaming, automatic rate-limit cooldown, and persistent JSON/XZ cursor recovery.
+Real-time download telemetry, live log streaming, multi-hour rate-limit auto-cooldown, and persistent JSON/XZ cursor recovery.
 
 <div align="center">
   <img src="docs/assets/demo-download.gif" alt="Download Progress & Engine Showcase" width="820" style="border-radius: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.15);" />

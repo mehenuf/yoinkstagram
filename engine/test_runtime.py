@@ -42,6 +42,20 @@ class TransportTests(unittest.TestCase):
         with self.assertRaises(CooldownStop):
             Controls(state, Event(), lambda *args: None).before_request()
 
+    def test_progressive_cooldown_escalation(self):
+        state = RateState()
+        messages = []
+        controls = Controls(state, Event(), lambda *args: messages.append(args))
+        with self.assertRaises(CooldownStop):
+            controls.impose_cooldown()
+        self.assertEqual(messages[-1][1]["seconds"], 900)
+        with self.assertRaises(CooldownStop):
+            controls.impose_cooldown()
+        self.assertEqual(messages[-1][1]["seconds"], 1800)
+        with self.assertRaises(CooldownStop):
+            controls.impose_cooldown()
+        self.assertEqual(messages[-1][1]["seconds"], 3600)
+
     def test_throttle_already_received_is_reported_even_during_cancel(self):
         state = RateState()
         stop = Event()

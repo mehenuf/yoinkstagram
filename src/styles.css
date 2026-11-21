@@ -59,36 +59,66 @@ svg { flex-shrink: 0; vertical-align: middle; }
   transition: transform .46s cubic-bezier(.2, 1.25, .42, 1);
 }
 .rail-link small { font-weight: 750; font-size: 10px; padding: 3px 6px; color: #85225f; background: #f9dce9; border-radius: 99px; }
-.rail-footer { display: grid; gap: 16px; margin-top: auto; }
+.rail-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
 .storage {
   min-width: 0; width: 100%; display: grid; align-items: center; grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 8px; border: 1px solid #ede6ef; border-radius: 15px; background: #faf7fb; color: #302638;
-  text-align: left; padding: 10px; transition: background .22s, border-color .22s, transform .22s var(--ease);
+  gap: 9px; border: 1px solid #ede6ef; border-radius: 14px; background: #faf7fb; color: #302638;
+  text-align: left; padding: 9px 11px; transition: background .22s, border-color .22s, transform .22s var(--ease);
 }
 .storage:hover { background: #fff2f7; border-color: #efcfdf; transform: translateY(-2px); }
-.storage-icon { display: grid; place-items: center; width: 32px; height: 34px; border-radius: 10px; background: #f5e9f4; color: #944777; }
+.storage-icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: #f5e9f4; color: #944777; flex-shrink: 0; }
 .storage strong, .storage small { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .storage strong { font-size: 12px; }
-.storage small { margin-top: 3px; color: #695d70; font-size: 10px; }
+.storage small { margin-top: 2px; color: #695d70; font-size: 10px; }
 .storage > svg { color: #88738a; }
-.rail-meta { display: grid; gap: 7px; padding-top: 10px; border-top: 1px solid var(--line); }
 .rail-github-link {
-  display: flex; align-items: center; gap: 7px; width: 100%; padding: 6px 9px;
-  border-radius: 10px; border: 1px solid #ede6ef; background: #faf7fb; color: #433748;
-  font-size: 11px; font-weight: 610; text-align: left; cursor: pointer;
-  transition: background .2s, border-color .2s, color .2s, transform .2s var(--ease);
+  min-width: 0; width: 100%; display: grid; align-items: center; grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 9px; border-radius: 14px; border: 1px solid #ede6ef; background: #faf7fb; color: #302638;
+  text-align: left; padding: 9px 11px; cursor: pointer;
+  transition: background .22s, border-color .22s, transform .22s var(--ease);
 }
-.rail-github-link:hover { background: #fff2f8; border-color: #edd2e2; color: #9a2b72; transform: translateY(-1px); }
-.rail-github-link span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.rail-github-link .meta-arrow { color: #9c8e9f; }
+.rail-github-link:hover { background: #fff2f8; border-color: #edd2e2; transform: translateY(-2px); }
+.github-icon-badge {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px;
+  background: #f5e9f4; color: #944777; flex-shrink: 0;
+}
+.github-link-copy {
+  display: flex; flex-direction: column; min-width: 0;
+}
+.github-link-copy strong {
+  display: block; font-size: 11.5px; font-weight: 700; color: var(--ink);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.github-link-copy small {
+  display: block; font-size: 10px; color: var(--muted); margin-top: 2px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.github-link-arrow { color: #88738a; flex-shrink: 0; transition: transform .2s var(--ease); }
+.rail-github-link:hover .github-link-arrow { transform: translate(1px, -1px); color: #9a2b72; }
+
+.version-info {
+  display: flex; flex-direction: column; gap: 4px; padding: 4px 6px;
+}
+.version-row {
+  display: flex; justify-content: space-between; align-items: center; width: 100%;
+  font-size: 11px; font-weight: 600; color: var(--ink);
+}
+.version-tag {
+  font-weight: 750; font-size: 10px; padding: 2px 7px; color: #85225f;
+  background: #f9dce9; border-radius: 99px;
+}
 .credit-row {
-  display: flex; align-items: center; gap: 5px; font-size: 10px; color: var(--muted);
-  padding: 0 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  display: block; font-size: 10px; color: var(--muted); line-height: 1.35;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.credit-row strong { color: var(--ink); font-weight: 680; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.version-info { display: flex; justify-content: space-between; align-items: center; color: #716679; font-size: 10px; padding: 0 4px; letter-spacing: .025em; }
-.version-tag { font-weight: 750; font-size: 10px; padding: 2px 6px; color: #85225f; background: #f9dce9; border-radius: 99px; }
-.version-desc { font-size: 10px; color: var(--muted); }
+.credit-row strong { color: var(--ink); font-weight: 650; }
 
 .app-body { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
 .window-bar {
@@ -195,13 +225,13 @@ svg { flex-shrink: 0; vertical-align: middle; }
 .metric-arrow { color: #8e748c; transition: transform .25s var(--ease); }
 .metric:hover .metric-arrow { transform: translate(2px, -2px); }
 
-.workspace-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(265px, 1fr); gap: 17px; align-items: start; }
+.workspace-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(280px, 1fr); gap: 17px; align-items: stretch; }
 .compose-anchor { min-width: 0; scroll-margin: 24px; }
 .panel { background: var(--white); border: 1px solid var(--line); border-radius: 22px; }
 .loading-panel { padding: 20px; }
 .loading-panel h2 { margin: 8px 0; font-size: 17px; }
 .loading-panel p { color: var(--muted); font-size: 13px; }
-.activity { min-width: 0; min-height: 234px; }
+.activity { min-width: 0; min-height: 234px; display: flex; flex-direction: column; }
 .activity-heading { display: flex; align-items: center; justify-content: space-between; padding: 15px 16px 13px; gap: 8px; }
 .title-with-icon { display: flex; align-items: center; gap: 9px; }
 .title-with-icon h2 { font-size: 15px; font-weight: 720; }
@@ -224,7 +254,7 @@ svg { flex-shrink: 0; vertical-align: middle; }
 .empty-art i { bottom: 6px; left: -10px; width: 3px; height: 3px; }
 .activity-empty h3 { font-size: 13px; font-weight: 740; }
 .activity-empty p { color: var(--muted); font-size: 12px; }
-.activity-jobs { list-style: none; padding: 0 10px 10px; margin: 0; }
+.activity-jobs { list-style: none; padding: 0 10px 10px; margin: 0; flex: 1; }
 .activity-jobs li + li { border-top: 1px solid #f1eaf2; }
 .activity-job {
   display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 6px;
@@ -235,6 +265,19 @@ svg { flex-shrink: 0; vertical-align: middle; }
 .activity-job-copy strong, .activity-job-copy small, .job-row-title strong, .job-row-title small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .activity-job-copy strong { font-size: 12px; }
 .activity-job-copy small { color: var(--muted); font-size: 11px; margin-top: 2px; }
+.activity-footer {
+  margin-top: auto; display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 16px; border-top: 1px solid var(--line); font-size: 11px; color: var(--muted);
+}
+.activity-footer-btn {
+  display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px;
+  border-radius: 8px; border: 1px solid #ede6ef; background: #faf7fb;
+  color: var(--ink); font-size: 11px; font-weight: 650; cursor: pointer;
+  transition: background .2s, border-color .2s, transform .2s var(--ease);
+}
+.activity-footer-btn:hover {
+  background: #fff1f7; border-color: #efcfdf; color: #a02a77; transform: translateY(-1px);
+}
 
 .list-screen { max-width: 1140px; margin: 0 auto; }
 .list-heading { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin: 8px 0 23px; }
@@ -471,11 +514,47 @@ svg { flex-shrink: 0; vertical-align: middle; }
 [data-theme="dark"] .rail-github-link:hover {
   background: #2b1c31;
   border-color: #5d3558;
+}
+[data-theme="dark"] .github-icon-badge {
+  background: #331e33;
   color: #ff8ac8;
+}
+[data-theme="dark"] .github-link-copy strong {
+  color: #f5f0f7;
+}
+[data-theme="dark"] .github-link-copy small,
+[data-theme="dark"] .github-link-arrow {
+  color: #a395aa;
+}
+[data-theme="dark"] .rail-github-link:hover .github-link-arrow {
+  color: #ff8ac8;
+}
+[data-theme="dark"] .version-row {
+  color: #e5dde7;
 }
 [data-theme="dark"] .version-tag {
   background: #3a1c35;
   color: #ff9fd5;
+}
+[data-theme="dark"] .credit-row {
+  color: #9d8fa1;
+}
+[data-theme="dark"] .credit-row strong {
+  color: #f0e6f2;
+}
+[data-theme="dark"] .activity-footer {
+  border-top-color: var(--line);
+  color: #a497aa;
+}
+[data-theme="dark"] .activity-footer-btn {
+  background: #1f1725;
+  border-color: #382c40;
+  color: #e5dde7;
+}
+[data-theme="dark"] .activity-footer-btn:hover {
+  background: #2b1c31;
+  border-color: #5d3558;
+  color: #ff8ac8;
 }
 
 [data-theme="dark"] .window-bar {
@@ -727,5 +806,420 @@ svg { flex-shrink: 0; vertical-align: middle; }
 [data-theme="dark"] .toast-error {
   background: #381815;
   border-color: #5d241e;
+  color: #ffaba0;
+}
+
+/* ==========================================================================
+   GTA VI / Vice City Neon Theme
+   ========================================================================== */
+
+[data-theme="gta6"] {
+  --ink: #fdf5ff;
+  --muted: #bda6cb;
+  --line: #411b54;
+  --paper: #0e0717;
+  --white: #170d24;
+  --accent: #ff2a8d;
+  --plum: #fdf5ff;
+  --peach: #ff914d;
+  --spectrum: linear-gradient(110deg, #ff914d 0%, #ff2a8d 50%, #7422f2 100%);
+  color: #fdf5ff;
+  background: #0e0717;
+}
+
+[data-theme="gta6"] body {
+  background: #0e0717;
+}
+
+[data-theme="gta6"] .rail {
+  background: #130a1f;
+  border-right-color: #381648;
+}
+
+[data-theme="gta6"] .brand span {
+  background: linear-gradient(110deg, #ff2a8d, #ff914d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 850;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="gta6"] .rail-link {
+  color: #bda6cb;
+}
+[data-theme="gta6"] .rail-link:hover {
+  color: #ff9fd5;
+  background: #251034;
+}
+[data-theme="gta6"] .rail-link.selected {
+  color: #ff2a8d;
+  text-shadow: 0 0 10px rgba(255, 42, 141, 0.45);
+}
+[data-theme="gta6"] .rail-highlight {
+  background: linear-gradient(106deg, #44133b, #260e3a);
+  border: 1px solid #ff2a8d;
+  box-shadow: 0 0 14px rgba(255, 42, 141, 0.35);
+}
+[data-theme="gta6"] .rail-link small {
+  background: #541743;
+  color: #ff9fd5;
+  box-shadow: 0 0 8px rgba(255, 42, 141, 0.4);
+}
+
+[data-theme="gta6"] .storage,
+[data-theme="gta6"] .rail-github-link {
+  background: #170d24;
+  border-color: #3b174d;
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .storage:hover,
+[data-theme="gta6"] .rail-github-link:hover {
+  background: #241138;
+  border-color: #ff2a8d;
+  box-shadow: 0 0 15px rgba(255, 42, 141, 0.28);
+}
+[data-theme="gta6"] .storage-icon,
+[data-theme="gta6"] .github-icon-badge {
+  background: #2f1136;
+  color: #ff2a8d;
+  box-shadow: 0 0 8px rgba(255, 42, 141, 0.3);
+}
+[data-theme="gta6"] .storage small,
+[data-theme="gta6"] .storage > svg,
+[data-theme="gta6"] .github-link-copy small,
+[data-theme="gta6"] .github-link-arrow {
+  color: #bda6cb;
+}
+[data-theme="gta6"] .github-link-copy strong {
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .version-row {
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .version-tag {
+  background: #48143a;
+  color: #ff9fd5;
+  border: 1px solid #ff2a8d55;
+  box-shadow: 0 0 6px rgba(255, 42, 141, 0.3);
+}
+[data-theme="gta6"] .credit-row {
+  color: #bda6cb;
+}
+[data-theme="gta6"] .credit-row strong {
+  color: #ff9fd5;
+}
+
+[data-theme="gta6"] .window-bar {
+  background: #0e0717;
+  border-bottom-color: #361648;
+}
+[data-theme="gta6"] .breadcrumbs {
+  color: #bda6cb;
+}
+[data-theme="gta6"] .breadcrumbs strong {
+  color: #fdf5ff;
+}
+
+[data-theme="gta6"] .theme-toggle-btn,
+[data-theme="gta6"] .github-pill {
+  background: #1a0f2b;
+  border-color: #3e1951;
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .theme-toggle-btn:hover,
+[data-theme="gta6"] .github-pill:hover {
+  background: #28123f;
+  border-color: #ff2a8d;
+  color: #ff9fd5;
+  box-shadow: 0 0 12px rgba(255, 42, 141, 0.3);
+}
+[data-theme="gta6"] .theme-toggle-btn.gta6-toggle {
+  background: linear-gradient(115deg, #3c1236, #210d35);
+  border-color: #ff2a8d;
+  color: #ff9fd5;
+  box-shadow: 0 0 12px rgba(255, 42, 141, 0.4);
+}
+[data-theme="gta6"] .account-pill {
+  background: #1a0f2b;
+  border-color: #3e1951;
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .account-pill:hover {
+  background: #28123f;
+  border-color: #ff2a8d;
+  box-shadow: 0 0 12px rgba(255, 42, 141, 0.3);
+}
+
+[data-theme="gta6"] .main-content {
+  scrollbar-color: #4b1c5f #0e0717;
+}
+
+[data-theme="gta6"] .hero {
+  border-color: #5c1c6e;
+  background:
+    radial-gradient(ellipse at 88% 20%, rgba(255, 42, 141, 0.42), transparent 58%),
+    radial-gradient(ellipse at 35% 88%, rgba(255, 123, 43, 0.32), transparent 52%),
+    radial-gradient(ellipse at 10% 25%, rgba(0, 245, 212, 0.18), transparent 45%),
+    linear-gradient(125deg, #1d0a2f 0%, #0d0517 100%);
+  color: #fdf5ff;
+  box-shadow: 0 10px 35px rgba(255, 42, 141, 0.14);
+}
+[data-theme="gta6"] .hero h1 em {
+  background: linear-gradient(110deg, #ff2a8d 0%, #ff8c3b 35%, #00f5d4 70%, #ff2a8d 100%);
+  background-size: 250% 100%;
+  animation: vice-gradient-flow 8s ease infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 14px rgba(255, 42, 141, 0.4));
+}
+@keyframes vice-gradient-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+[data-theme="gta6"] .hero p {
+  color: #d8c2e6;
+}
+[data-theme="gta6"] .hero-art-ring {
+  background: linear-gradient(135deg, rgba(255, 42, 141, 0.4), rgba(255, 123, 43, 0.3));
+}
+[data-theme="gta6"] .hero-photo {
+  border-color: #642177;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.55), 0 0 25px rgba(255, 42, 141, 0.25);
+}
+
+[data-theme="gta6"] .statistics {
+  border-color: #3b174d;
+}
+[data-theme="gta6"] .metric:hover {
+  background: #231038;
+}
+[data-theme="gta6"] .metric + .metric {
+  border-left-color: #3b174d;
+}
+[data-theme="gta6"] .metric-icon {
+  background: #311139;
+  color: #ff2a8d;
+  box-shadow: 0 0 8px rgba(255, 42, 141, 0.25);
+}
+[data-theme="gta6"] .metric-copy strong {
+  color: #ff9fd5;
+}
+[data-theme="gta6"] .metric-arrow {
+  color: #bda6cb;
+}
+
+[data-theme="gta6"] .panel {
+  background: #170d24;
+  border-color: #3b174d;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+}
+[data-theme="gta6"] .panel-icon {
+  background: #311139;
+  color: #ff2a8d;
+}
+[data-theme="gta6"] .icon-button {
+  color: #bda6cb;
+}
+[data-theme="gta6"] .icon-button:hover {
+  background: #251034;
+  color: #ff9fd5;
+}
+
+[data-theme="gta6"] .empty-art {
+  background: #261033;
+  border-color: #4c185a;
+  color: #ff2a8d;
+}
+[data-theme="gta6"] .empty-art span,
+[data-theme="gta6"] .empty-art i {
+  background: #ff7b2b;
+}
+
+[data-theme="gta6"] .activity-jobs li + li {
+  border-top-color: #2b1139;
+}
+[data-theme="gta6"] .activity-job:hover {
+  background: #220f35;
+}
+[data-theme="gta6"] .activity-footer {
+  border-top-color: #30133f;
+  color: #bda6cb;
+}
+[data-theme="gta6"] .activity-footer-btn {
+  background: #1e0e2e;
+  border-color: #3f1952;
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .activity-footer-btn:hover {
+  background: #2b113f;
+  border-color: #ff2a8d;
+  color: #ff2a8d;
+  box-shadow: 0 0 10px rgba(255, 42, 141, 0.3);
+}
+
+[data-theme="gta6"] .soft-button {
+  background: #1f0f30;
+  border-color: #3e1951;
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .soft-button:hover {
+  background: #2b1242;
+  border-color: #ff2a8d;
+  color: #ff9fd5;
+  box-shadow: 0 0 10px rgba(255, 42, 141, 0.25);
+}
+[data-theme="gta6"] .solid-button {
+  background: linear-gradient(110deg, #ff2a8d 0%, #ff7b2b 100%);
+  border: 0;
+  color: #fff;
+  box-shadow: 0 0 16px rgba(255, 42, 141, 0.45);
+  font-weight: 750;
+  animation: vice-pulse 3s ease-in-out infinite;
+}
+[data-theme="gta6"] .solid-button:hover {
+  background: linear-gradient(110deg, #ff4099 0%, #ff8c42 100%);
+  box-shadow: 0 0 24px rgba(255, 42, 141, 0.7);
+  transform: translateY(-2px);
+}
+@keyframes vice-pulse {
+  0%, 100% { box-shadow: 0 0 14px rgba(255, 42, 141, 0.45); }
+  50% { box-shadow: 0 0 24px rgba(255, 42, 141, 0.7), 0 0 35px rgba(255, 123, 43, 0.3); }
+}
+
+[data-theme="gta6"] .danger-button {
+  background: #39111c;
+  border-color: #611e2f;
+  color: #ff859d;
+}
+[data-theme="gta6"] .danger-button:hover {
+  background: #4a1424;
+  border-color: #ff3366;
+  color: #ffa1b5;
+  box-shadow: 0 0 12px rgba(255, 51, 102, 0.3);
+}
+
+[data-theme="gta6"] .queue-banner {
+  background: #251233;
+  border: 1px solid #ff2a8d55;
+  color: #ffc2ea;
+  box-shadow: 0 0 14px rgba(255, 42, 141, 0.2);
+}
+
+[data-theme="gta6"] .list-toolbar {
+  border-bottom-color: #3b174d;
+}
+[data-theme="gta6"] .search-box {
+  background: #1d0f2d;
+  border-color: #3e1951;
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .search-box input {
+  color: #fdf5ff;
+}
+[data-theme="gta6"] .status-filter {
+  background: #1d0f2d;
+  border-color: #3e1951;
+  color: #fdf5ff;
+}
+
+[data-theme="gta6"] .job-list li + li {
+  border-top-color: #2b1139;
+}
+[data-theme="gta6"] .job-row:hover {
+  background: #220f35;
+}
+[data-theme="gta6"] .job-icon {
+  background: #301138;
+  color: #ff2a8d;
+}
+[data-theme="gta6"] .job-row-arrow {
+  color: #bda6cb;
+}
+
+[data-theme="gta6"] .job-badge {
+  background: #22102f;
+}
+[data-theme="gta6"] .state-running {
+  background: #082924;
+  color: #00f5d4;
+  border: 1px solid #00f5d455;
+  box-shadow: 0 0 8px rgba(0, 245, 212, 0.3);
+}
+[data-theme="gta6"] .state-completed {
+  background: #082924;
+  color: #00f5d4;
+  border: 1px solid #00f5d455;
+}
+[data-theme="gta6"] .state-cooldown {
+  background: #361710;
+  color: #ff914d;
+  border: 1px solid #ff914d55;
+  box-shadow: 0 0 8px rgba(255, 145, 77, 0.3);
+}
+[data-theme="gta6"] .state-partial,
+[data-theme="gta6"] .state-interrupted {
+  background: #361a29;
+  color: #ff9fd5;
+  border: 1px solid #ff9fd555;
+}
+[data-theme="gta6"] .state-failed {
+  background: #39111c;
+  color: #ff6e8a;
+  border: 1px solid #ff6e8a55;
+}
+
+[data-theme="gta6"] .list-pages {
+  border-top-color: #3b174d;
+}
+
+[data-theme="gta6"] .job-dialog {
+  background: #170d24;
+  border-color: #4b1b60;
+  color: var(--ink);
+  box-shadow: 0 20px 85px rgba(0, 0, 0, 0.8), 0 0 35px rgba(255, 42, 141, 0.2);
+}
+[data-theme="gta6"] .job-dialog::backdrop {
+  background: #06020abf;
+}
+[data-theme="gta6"] .job-info {
+  background: #12091c;
+  border-color: #381548;
+}
+[data-theme="gta6"] .job-info > div + div {
+  border-left-color: #381548;
+}
+[data-theme="gta6"] .job-message {
+  background: #2f1035;
+  color: #ffb7ea;
+}
+[data-theme="gta6"] .job-message-error {
+  background: #3b1219;
+  color: #ffa5b6;
+}
+[data-theme="gta6"] .logs,
+[data-theme="gta6"] .empty-log {
+  background: #12091c;
+  border-color: #381548;
+  color: #bda6cb;
+}
+[data-theme="gta6"] .log-error {
+  color: #ff6e8a;
+}
+[data-theme="gta6"] .log-warn {
+  color: #ffb84d;
+}
+
+[data-theme="gta6"] .toast {
+  background: #2a0e33;
+  border: 1px solid #ff2a8d;
+  color: #ffc7ed;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 16px rgba(255, 42, 141, 0.4);
+}
+[data-theme="gta6"] .toast-error {
+  background: #38101a;
+  border-color: #ff3366;
   color: #ffaba0;
 }

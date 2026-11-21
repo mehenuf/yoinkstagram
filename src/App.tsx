@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react';
 import {
   ArrowDownToLine, ArrowRight, ArrowUpRight, Check, CircleCheck, Clock3,
   Camera, ExternalLink, HardDrive, History, Images, LayoutGrid, ListOrdered, LogIn,
-  Moon, Settings2, Sun, X,
+  Moon, Palmtree, Settings2, Sun, X,
 } from 'lucide-react';
 import { AccountDialog, SettingsPanel, Workbench } from './Workbench';
 import { Activity, DownloadList, JobDialog, belongsToQueue } from './Downloads';
@@ -12,7 +12,7 @@ import mark from './assets/mark.png';
 import coast from './assets/coast.webp';
 import type { Snapshot } from './types';
 
-export type Theme = 'light' | 'dark' | 'system';
+export type Theme = 'light' | 'dark' | 'gta6' | 'system';
 
 const sections = [
   { id: 'workspace', label: 'Workspace', icon: LayoutGrid },
@@ -24,7 +24,7 @@ type Section = (typeof sections)[number]['id'];
 
 const unloaded: Snapshot = {
   jobs: [], paused: false, cooldownUntil: null, account: null,
-  settings: { destination: '', reduceMotion: false }, version: '1.1.0',
+  settings: { destination: '', reduceMotion: false }, version: '1.2.0',
 };
 
 const count = new Intl.NumberFormat();
@@ -63,7 +63,7 @@ export function App() {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', effectiveTheme);
     if (api?.setThemeOverlay) {
-      void api.setThemeOverlay(effectiveTheme === 'dark');
+      void api.setThemeOverlay(effectiveTheme === 'dark' || effectiveTheme === 'gta6');
     }
   }, [effectiveTheme, api]);
 
@@ -77,8 +77,17 @@ export function App() {
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeAndPersist(effectiveTheme === 'dark' ? 'light' : 'dark');
-  }, [effectiveTheme, setThemeAndPersist]);
+    if (theme === 'system') {
+      setThemeAndPersist(effectiveTheme === 'dark' ? 'gta6' : effectiveTheme === 'gta6' ? 'light' : 'dark');
+    } else {
+      const cycle: Record<'light' | 'dark' | 'gta6', Theme> = {
+        light: 'dark',
+        dark: 'gta6',
+        gta6: 'light',
+      };
+      setThemeAndPersist(cycle[theme as 'light' | 'dark' | 'gta6'] || 'light');
+    }
+  }, [theme, effectiveTheme, setThemeAndPersist]);
 
   const openUrl = useCallback((url: string) => {
     if (api?.openExternal) {
@@ -238,13 +247,13 @@ export function App() {
           <div className="window-bar-actions">
             <button
               type="button"
-              className="theme-toggle-btn"
+              className={`theme-toggle-btn ${effectiveTheme === 'gta6' ? 'gta6-toggle' : ''}`}
               onClick={toggleTheme}
-              title={`Switch to ${effectiveTheme === 'dark' ? 'Light' : 'Dark'} mode`}
+              title={`Active: ${effectiveTheme === 'gta6' ? 'GTA VI' : effectiveTheme === 'dark' ? 'Dark' : 'Light'} (Click to cycle themes)`}
               aria-label="Toggle theme"
             >
-              {effectiveTheme === 'dark' ? <Sun size={15} /> : <Moon size={15} />}
-              <span>{effectiveTheme === 'dark' ? 'Light' : 'Dark'}</span>
+              {effectiveTheme === 'gta6' ? <Palmtree size={15} /> : effectiveTheme === 'dark' ? <Moon size={15} /> : <Sun size={15} />}
+              <span>{effectiveTheme === 'gta6' ? 'GTA VI' : effectiveTheme === 'dark' ? 'Dark' : 'Light'}</span>
             </button>
 
             <button

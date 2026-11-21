@@ -1,7 +1,7 @@
 import {
   AtSign, Bookmark, Camera, Check, ChevronDown, CircleHelp, Code2, Download,
   ExternalLink, FileJson, Folder, FolderOpen, Hash, Images, Laptop, Link2, ListPlus,
-  LoaderCircle, LockKeyhole, LogOut, MapPin, Moon, Plus, Radio, Settings2, ShieldCheck,
+  LoaderCircle, LockKeyhole, LogOut, MapPin, Moon, Palmtree, Plus, Radio, Settings2, ShieldCheck,
   SlidersHorizontal, Sun, Users, X,
 } from 'lucide-react';
 import { useId, useLayoutEffect, useRef, useState } from 'react';
@@ -561,8 +561,8 @@ export function SettingsPanel({
   account: string | null;
   version: string;
   onSignIn(): void;
-  theme?: 'light' | 'dark' | 'system';
-  onSelectTheme?(theme: 'light' | 'dark' | 'system'): void;
+  theme?: 'light' | 'dark' | 'gta6' | 'system';
+  onSelectTheme?(theme: 'light' | 'dark' | 'gta6' | 'system'): void;
   onOpenUrl?(url: string): void;
 }) {
   const [issue, setIssue] = useState('');
@@ -645,6 +645,14 @@ export function SettingsPanel({
               title="Dark theme"
             >
               <Moon size={15} /> <span>Dark</span>
+            </button>
+            <button
+              type="button"
+              className={`wb-theme-btn ${theme === 'gta6' ? 'selected' : ''}`}
+              onClick={() => onSelectTheme?.('gta6')}
+              title="GTA VI Vice City theme"
+            >
+              <Palmtree size={15} /> <span>GTA VI</span>
             </button>
             <button
               type="button"

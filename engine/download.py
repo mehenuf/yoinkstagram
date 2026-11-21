@@ -31,9 +31,12 @@ def friendly_error(error):
     if isinstance(error, QueryReturnedForbiddenException):
         return "Instagram denied access to this content. Check the account’s permissions."
     if isinstance(error, (ConnectionException, RequestException)):
-        if re.search(r"\b(401|403)\b", str(error)):
+        err_str = str(error).casefold()
+        if re.search(r"\b(401|403)\b", err_str):
             return "Instagram refused this request. Check that you can view the content in your browser."
-        return "Could not retrieve this content from Instagram. Check your connection and try again."
+        if "429" in err_str or "too many requests" in err_str:
+            return "Instagram rate limit reached. Pausing download to avoid restrictions."
+        return "Could not retrieve this content from Instagram. Check your connection or session and try again."
     if isinstance(error, PermissionError):
         return "The output folder is read-only or a file is in use. Choose another folder or close the file."
     if isinstance(error, OSError):
@@ -198,6 +201,7 @@ class DownloadOperation:
         self.controls = controls
         self.options = job.options
         self.files = self.items = self.media_files = self.failures = 0
+        self.consecutive_network_failures = 0
         self.last_problem = ""
         self.phase = "Preparing download"
         self.loader = None
@@ -219,6 +223,14 @@ class DownloadOperation:
             self.failures += 1
             self.last_problem = friendly_error(error)
             self.message(self.last_problem, "warn")
+            if isinstance(error, (ConnectionException, RequestException)):
+                self.consecutive_network_failures += 1
+                if self.consecutive_network_failures >= 3:
+                    self.message("Multiple consecutive network requests failed. Entering safety cooldown to protect your account.", "warn")
+                    self.consecutive_network_failures = 0
+                    self.controls.impose_cooldown()
+                else:
+                    self.controls.wait(1.5)
 
     def folders(self, target, profile=None):
         folder = self.options.folder_pattern.format(target=target, profile=profile or target)
@@ -258,6 +270,18 @@ class DownloadOperation:
                 updated = loader.download_post(post, target)
             except PostChangedException:
                 updated = loader.download_post(post, target)
+            except (ConnectionException, RequestException) as err:
+                self.controls.classify_message(err)
+                self.message("Instagram connection hiccup. Retrying in 2 seconds...", "warn")
+                self.controls.wait(2.0)
+                try:
+                    updated = loader.download_post(post, target)
+                except (ConnectionException, RequestException) as err2:
+                    self.controls.classify_message(err2)
+                    self.message("Retry failed. Final retry in 4 seconds...", "warn")
+                    self.controls.wait(4.0)
+                    updated = loader.download_post(post, target)
+            self.consecutive_network_failures = 0
             return updated or self.media_files > media_before
         finally:
             loader.slide_end = end

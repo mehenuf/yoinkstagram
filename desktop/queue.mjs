@@ -113,6 +113,17 @@ export class ArchiveQueue {
 
   pauseQueue(paused) {
     if (typeof paused !== 'boolean') throw new Error('Invalid queue state.');
+    if (!paused && this.state.cooldownUntil) {
+      this.state.cooldownUntil = null;
+      for (const j of this.state.jobs) {
+        if (j.status === 'cooldown') {
+          j.status = 'queued';
+          j.phase = 'Queued';
+          j.message = 'Resumed by user.';
+          j.updatedAt = Date.now();
+        }
+      }
+    }
     this.#commit({ ...this.state, paused });
     this.#dispatch();
   }
@@ -125,7 +136,7 @@ export class ArchiveQueue {
 
   cancelJob(id) {
     const job = this.#job(id);
-    if (job.status === 'queued') {
+    if (job.status === 'queued' || job.status === 'cooldown') {
       const canceled = { ...job, logs: [...job.logs] };
       this.#finish(canceled, { status: 'canceled', message: 'Canceled before starting.' });
       this.#replaceJob(job, canceled);
@@ -189,6 +200,14 @@ export class ArchiveQueue {
     const now = Date.now();
     if (this.state.cooldownUntil && this.state.cooldownUntil <= now) {
       this.state.cooldownUntil = null;
+      for (const j of this.state.jobs) {
+        if (j.status === 'cooldown') {
+          j.status = 'queued';
+          j.phase = 'Resuming';
+          j.message = 'Cooldown ended. Resuming download...';
+          j.updatedAt = now;
+        }
+      }
       this.#persistOrPause();
     }
     const job = selectRunnable(this.state, now);
@@ -237,17 +256,27 @@ export class ArchiveQueue {
       this.#finish(job, { ...outcome, status: 'canceled', message: 'Canceled during Instagram’s cooldown.' }, earlierFiles);
       return;
     }
-    if (!job.rateLimitRetries && this.state.cooldownUntil > Date.now()) {
-      const message = 'Instagram requested a cooldown. This download will retry when the cooldown ends.';
-      Object.assign(job, {
-        status: 'queued', phase: 'Waiting for Instagram', message, updatedAt: Date.now(), rateLimitRetries: 1,
-      });
-      updateCounts(job, outcome, earlierFiles);
-      log(job, 'warn', message);
-      return;
+    const now = Date.now();
+    job.rateLimitRetries = (job.rateLimitRetries || 0) + 1;
+
+    // If a cooldown deadline was set and is in the future, respect it. Otherwise calculate progressive backoff.
+    if (!this.state.cooldownUntil || this.state.cooldownUntil <= now) {
+      const backoffMinutes = job.rateLimitRetries === 1 ? 15 : job.rateLimitRetries === 2 ? 30 : job.rateLimitRetries === 3 ? 60 : 120;
+      this.state.cooldownUntil = now + backoffMinutes * 60 * 1000;
     }
-    const status = earlierFiles > 0 || outcome.files > 0 ? 'partial' : 'failed';
-    this.#finish(job, { ...outcome, status }, earlierFiles);
+
+    const remainingSec = Math.max(1, Math.ceil((this.state.cooldownUntil - now) / 1000));
+    const timeStr = remainingSec > 90 ? `~${Math.ceil(remainingSec / 60)} min` : `${remainingSec}s`;
+    const message = `Instagram requested a pause. Yoinkstagram is cooling down (attempt ${job.rateLimitRetries}) and will automatically resume in ${timeStr}.`;
+
+    Object.assign(job, {
+      status: 'cooldown',
+      phase: `Cooling down (Attempt ${job.rateLimitRetries})`,
+      message,
+      updatedAt: now,
+    });
+    updateCounts(job, outcome, earlierFiles);
+    log(job, 'warn', message);
   }
 
   #finish(job, event, earlierFiles = 0) {
